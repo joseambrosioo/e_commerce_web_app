@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-//create a database connection -> u can also
 //create a database connection or
 //create a separate file for this and then import/use that file here
 

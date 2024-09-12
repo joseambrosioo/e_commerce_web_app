@@ -96,9 +96,9 @@ import { Label } from "@radix-ui/react-label";
 import { Select, SelectContent, SelectTrigger, SelectItem, SelectValue } from "@radix-ui/react-select";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";  // Import Input from your UI library or define it if custom
+import { Input } from "../ui/input";
 
-function CommonForm({ formControls, formData, setFormData, onSubmit }) {
+function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText }) {
     function renderInputByComponentType(getControlItem) {
         let element = null;
         const value = formData[getControlItem.name];
@@ -182,7 +182,8 @@ function CommonForm({ formControls, formData, setFormData, onSubmit }) {
                 ))}
             </div>
             <Button type="submit" className="mt-2 w-full">
-                Create Account
+                {/* Create Account */}
+                {buttonText}
             </Button>
         </form>
     );

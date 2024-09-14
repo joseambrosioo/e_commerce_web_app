@@ -3,9 +3,8 @@ import { registerFormControls } from "@/config";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-// Adjust the path if necessary
-import { registerUser } from '@/store/auth-slice'; // Ensure this path is correct
-
+import { registerUser } from '@/store/auth-slice';
+import { useToast } from "@/hooks/use-toast";
 
 const initialState = {
     userName: '',
@@ -20,19 +19,17 @@ function AuthRegister() {
     const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { toast } = useToast();
 
     function onSubmit(event) {
         event.preventDefault();
-        dispatch(registerUser(formData)).then((resultAction) => {
-            if (registerUser.fulfilled.match(resultAction)) {
-                navigate('/auth/login');
-            } else {
-                // Handle registration error (optional)
-                console.error('Registration failed:', resultAction.payload);
+        dispatch(registerUser(formData)).then((data) => {
+            if (data?.payload?.success) {
+                toast({
+                    title: data?.payload?.message,
+                });
+                navigate("/auth/login");
             }
-        }).catch((error) => {
-            // Handle unexpected errors (optional)
-            console.error('Unexpected error:', error);
         });
     }
 

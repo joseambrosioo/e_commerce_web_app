@@ -74,6 +74,7 @@
 
 
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './App.css';
 
 import AuthLayout from './components/auth/layout';
@@ -94,8 +95,10 @@ import CheckAuth from './components/common/check-auth';
 import UnauthPage from './pages/unauth-page';
 
 function App() {
-  const isAuthenticated = false;
-  const user = null;
+  // const isAuthenticated = false;
+  // const user = null;
+
+  const { user, isAuthenticated } = useSelector(state => state.auth)
 
   // const isAuthenticated = true;
   // const user = {

@@ -23,10 +23,19 @@ function AuthRegister() {
 
     function onSubmit(event) {
         event.preventDefault();
-        dispatch(registerUser(formData)).then(() => {
-            console.log()
+        dispatch(registerUser(formData)).then((resultAction) => {
+            if (registerUser.fulfilled.match(resultAction)) {
+                navigate('/auth/login');
+            } else {
+                // Handle registration error (optional)
+                console.error('Registration failed:', resultAction.payload);
+            }
+        }).catch((error) => {
+            // Handle unexpected errors (optional)
+            console.error('Unexpected error:', error);
         });
     }
+
     // function onSubmit(event) {
     //     event.preventDefault(); // Prevent default form submission
     //     console.log(formData); // Log form data to console

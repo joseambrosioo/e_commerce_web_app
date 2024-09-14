@@ -5,7 +5,7 @@
 // import { Button } from "../ui/button";
 
 // function CommonForm({ formControls, formData, setFormData, onSubmit }) {
-//     // const formControls = registerFormControls; 
+//     // const formControls = registerFormControls;
 //     function renderInputByComponentType(getControlItem) {
 //         let element = null;
 //         const value = formData[getControlItem.name]
@@ -90,6 +90,11 @@
 // }
 
 // export default CommonForm;
+
+
+
+
+
 
 
 import { Label } from "@radix-ui/react-label";
@@ -190,3 +195,4 @@ function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText 
 }
 
 export default CommonForm;
+ 

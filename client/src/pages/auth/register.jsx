@@ -1,7 +1,11 @@
 import CommonForm from "@/components/common/form";
 import { registerFormControls } from "@/config";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+// Adjust the path if necessary
+import { registerUser } from '@/store/auth-slice'; // Ensure this path is correct
+
 
 const initialState = {
     userName: '',
@@ -13,11 +17,23 @@ function AuthRegister() {
     // console.log("AuthRegister rendered"); // Add this line to see if the component is rendering
 
 
-    const [formData, setFormData] = useState(initialState)
+    const [formData, setFormData] = useState(initialState);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    function onSubmit() {
-
+    function onSubmit(event) {
+        event.preventDefault();
+        dispatch(registerUser(formData)).then(() => {
+            console.log()
+        });
     }
+    // function onSubmit(event) {
+    //     event.preventDefault(); // Prevent default form submission
+    //     console.log(formData); // Log form data to console
+    // }
+
+
+    console.log(formData);
 
     return <div className="max-auto w-full max-w-md space-y-6">
         <div className="text-cent">

@@ -1,6 +1,8 @@
 import CommonForm from "@/components/common/form";
 import { loginFormControls } from "@/config";
+import { loginUser } from "@/store/auth-slice";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const initialState = {
@@ -12,10 +14,15 @@ function AuthLogin() {
     // console.log("AuthLogin rendered"); // Add this line to see if the component is rendering
 
 
-    const [formData, setFormData] = useState(initialState)
+    const [formData, setFormData] = useState(initialState);
+    const dispatch = useDispatch();
 
-    function onSubmit() {
+    function onSubmit(event) {
+        event.preventDefault();
 
+        dispatch(loginUser(formData)).then(data => {
+            console.log(data);
+        });
     }
 
     return <div className="max-auto w-full max-w-md space-y-6">

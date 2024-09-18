@@ -53,7 +53,9 @@ function AdminSideBar({ open, setOpen }) {
     return (
         <Fragment>
             <Sheet open={open} onOpenChange={setOpen}>
-                <SheetContent side="left" claasName="w-64">
+                {/* <SheetContent side="left" className="w-64"> */}
+                {/* <SheetContent side="left" className="w-64 bg-white text-white p-5 shadow-lg h-full"> */}
+                <SheetContent side="left" className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full" >
                     <div className="flex flex-col h-full">
                         <SheetHeader className="border-b">
                             <SheetTitle className="flex gap-2 mt-5 mb-5">

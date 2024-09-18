@@ -1,6 +1,7 @@
 import { Button } from "../ui/button";
 import { AlignJustify } from "lucide-react";
 import { LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // // function AdminHeader({ setOpen }) {
 // //     return (
@@ -34,7 +35,6 @@ import { LogOut } from "lucide-react";
 // export default AdminHeader;
 
 
-import { useNavigate } from "react-router-dom";
 // import { AlignJustify } from "lucide-react"; // Ensure this import is correct
 
 // function AdminHeader({ setOpen }) {

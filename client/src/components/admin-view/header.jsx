@@ -22,7 +22,7 @@ import { LogOut } from "lucide-react";
 
 // function AdminHeader({ setOpen }) {
 //     return (
-//         <header className="flex items-center justify-between px-4 py-3 bg-backgraound border-b">
+//         <header className="flex items-center justify-between px-4 py-3 bg-background border-b">
 //             <button className="lg:hidden sm:block" onClick={() => setOpen(prev => !prev)}>
 //                 <AlignJustify />
 //                 <span className="sr-only">Toggle Menu</span>

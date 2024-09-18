@@ -3,7 +3,8 @@ import axios from 'axios'; // Make sure axios is imported
 
 const initialState = {
     isAuthenticated: false,
-    isLoading: false,
+    isLoading: true,
+    // isLoading: false,
     user: null
 };
 

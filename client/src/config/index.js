@@ -37,4 +37,4 @@ export const loginFormControls = [
         componentType: 'input',
         type: 'password',
     }
-]
+];

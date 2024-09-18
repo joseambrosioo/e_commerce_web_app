@@ -25,7 +25,9 @@ module.exports = {
         destructive: {
           DEFAULT: '#dc2626', // Red for destructive variant
           foreground: '#ffffff', // White text for contrast
-        }
+        },
+        muted: '#d3d3d3', // Define muted color or adjust accordingly
+        foreground: '#333333', // Define foreground color
       }
     }
   },

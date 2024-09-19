@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 
 const initialState = {
@@ -63,7 +64,7 @@ export const deleteNewProduct = createAsyncThunk(
 
 const adminProductsSlice = createSlice({
     name: 'adminProducts',
-    initialState: false,
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchAllProducts.pending, (state) => {
@@ -71,9 +72,9 @@ const adminProductsSlice = createSlice({
         }).addCase(fetchAllProducts.fulfilled, (state, action) => {
             console.log(action.payload);
             state.isLoading = false
-            state.productList = action.payload
+            state.productList = action.payload.data;
         }).addCase(fetchAllProducts.rejected, (state, action) => {
-            console.log(action.payload);
+            // console.log(action.payload);
             state.isLoading = false
             state.productList = []
         })

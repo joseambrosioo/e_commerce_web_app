@@ -3,7 +3,7 @@ import CommonForm from "@/components/common/form";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { addProductFormElements } from "@/config";
-import { fetchAllProducts } from "@/store/admin/products-slice";
+import { addNewProduct, fetchAllProducts } from "@/store/admin/products-slice";
 import { Description } from "@radix-ui/react-toast";
 
 import { Fragment, useEffect, useState } from "react";
@@ -32,14 +32,20 @@ function AdminProducts() {
 
     function onSubmit(event) {
         event.preventDefault();
-
+        dispatch(addNewProduct({
+            ...formData,
+            image: uploadedImageUrl,
+        })
+        ).then((data) => {
+            console.log(data);
+        });
     }
 
     useEffect(() => {
         dispatch(fetchAllProducts())
     }, [dispatch])
 
-    console.log(productList, "productList");
+    console.log(productList, uploadedImageUrl, "productList");
 
     return <Fragment>
         <div className="mb-5 w-full flex justify-end">

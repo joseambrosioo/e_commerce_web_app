@@ -3,9 +3,11 @@ import CommonForm from "@/components/common/form";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { addProductFormElements } from "@/config";
+import { fetchAllProducts } from "@/store/admin/products-slice";
 import { Description } from "@radix-ui/react-toast";
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialFormData = {
     image: null,
@@ -24,10 +26,20 @@ function AdminProducts() {
     const [formData, setFormData] = useState(initialFormData)
     const [imageFile, setImageFile] = useState(null);
     const [uploadedImageUrl, setUploadedImageUrl] = useState('');
+    const [imageLoadingState, setImageLoadingState] = useState(false);
+    const { productList } = useSelector(state => state.adminProducts)
+    const dispatch = useDispatch();
 
-    function onSubmit() {
+    function onSubmit(event) {
+        event.preventDefault();
 
     }
+
+    useEffect(() => {
+        dispatch(fetchAllProducts())
+    }, [dispatch])
+
+    console.log(productList, "productList");
 
     return <Fragment>
         <div className="mb-5 w-full flex justify-end">
@@ -49,6 +61,9 @@ function AdminProducts() {
                     setImageFile={setImageFile}
                     uploadedImageUrl={uploadedImageUrl}
                     setUploadedImageUrl={setUploadedImageUrl}
+                    setImageLoadingState={setImageLoadingState}
+                    imageLoadingState={imageLoadingState}
+
                 />
                 < div className="py-6">
                     <CommonForm

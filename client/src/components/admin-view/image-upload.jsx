@@ -4,8 +4,16 @@ import { useEffect, useRef } from "react";
 import { FileIcon, UploadCloudIcon, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import axios from "axios";
+import { Skeleton } from "../ui/skeleton";
 
-function ProductImageUpload({ imageFile, setImageFile, uploadedImageUrl, setUploadedImageUrl }) {
+function ProductImageUpload({
+    imageFile,
+    setImageFile,
+    imageLoadingState,
+    uploadedImageUrl,
+    setUploadedImageUrl,
+    setImageLoadingState,
+}) {
 
     const inputRef = useRef(null)
 
@@ -37,11 +45,15 @@ function ProductImageUpload({ imageFile, setImageFile, uploadedImageUrl, setUplo
     console.log(imageFile);
 
     async function uploadedImageToCloudinary() {
+        setImageLoadingState(true)
         const data = new FormData();
         data.append('my_file', imageFile)
         const response = await axios.post('http://localhost:5000/api/admin/products/upload-image', data)
         console.log(response, "response");
-        if (response) setUploadedImageUrl(response.data)
+        if (response.data?.success) {
+            setUploadedImageUrl(response.data.result.url);
+            setImageLoadingState(false)
+        }
     }
 
     useEffect(() => {
@@ -66,17 +78,20 @@ function ProductImageUpload({ imageFile, setImageFile, uploadedImageUrl, setUplo
                             <span>Drag & drog or click to upload image</span>
                         </Label>
                     ) : (
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center justify-between">
-                                <FileIcon className="w-8 text-primary mr-2 h-8" />
+                        imageLoadingState ? (
+                            <Skeleton className="h-10 bg-gray-100" />
+                        ) : (
+                            < div className="flex items-center justify-between">
+                                <div className="flex items-center justify-between">
+                                    <FileIcon className="w-8 text-primary mr-2 h-8" />
+                                </div>
+                                <p className="text-sm font-medium">{imageFile.name}</p>
+                                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={handleRemoveImage}>
+                                    <XIcon className="w-4 h-4" />
+                                    <span className="sr-only">Remove File</span>
+                                </Button>
                             </div>
-                            <p className="text-sm font-medium">{imageFile.name}</p>
-                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={handleRemoveImage}>
-                                <XIcon className="w-4 h-4" />
-                                <span className="sr-only">Remove File</span>
-                            </Button>
-                        </div>
-                    )}
+                        ))}
             </div>
         </div >
     );

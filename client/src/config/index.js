@@ -58,6 +58,7 @@ export const addProductFormElements = [
         label: 'Category',
         name: 'category',
         componentType: 'select',
+        placeholder: 'Select a category',
         options: [
             { id: "men", label: "Men" },
             { id: "women", label: "Women" },
@@ -70,6 +71,7 @@ export const addProductFormElements = [
         label: 'Brand',
         name: 'brand',
         componentType: 'select',
+        placeholder: 'Select a brand',
         options: [
             { id: "nike", label: "Nike" },
             { id: "adidas", label: "Adidas" },

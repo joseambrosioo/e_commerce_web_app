@@ -1,3 +1,4 @@
+import ProductImageUpload from "@/components/admin-view/image-upload";
 import CommonForm from "@/components/common/form";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -21,10 +22,13 @@ function AdminProducts() {
 
     const [openCreateProductsDialog, setOpencreateProductsDialog] = useState(false);
     const [formData, setFormData] = useState(initialFormData)
+    const [imageFile, setImageFile] = useState(null);
+    const [uploadedImageUrl, setUploadedImageUrl] = useState('');
 
     function onSubmit() {
 
     }
+
     return <Fragment>
         <div className="mb-5 w-full flex justify-end">
             <Button onClick={() => setOpencreateProductsDialog(true)} className="bg-black text-white font-semibold">Add New Product</Button>
@@ -40,7 +44,13 @@ function AdminProducts() {
                 <SheetHeader>
                     <SheetTitle>Add New Product</SheetTitle>
                 </SheetHeader>
-                <div className="py-6">
+                <ProductImageUpload
+                    imageFile={imageFile}
+                    setImageFile={setImageFile}
+                    uploadedImageUrl={uploadedImageUrl}
+                    setUploadedImageUrl={setUploadedImageUrl}
+                />
+                < div className="py-6">
                     <CommonForm
                         onSubmit={onSubmit}
                         formData={formData}

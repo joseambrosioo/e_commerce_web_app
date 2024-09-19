@@ -1,4 +1,5 @@
 import ProductImageUpload from "@/components/admin-view/image-upload";
+import AdminProductTile from "@/components/admin-view/product-tile";
 import CommonForm from "@/components/common/form";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -63,7 +64,15 @@ function AdminProducts() {
         <div className="mb-5 w-full flex justify-end">
             <Button onClick={() => setOpenCreateProductsDialog(true)} className="bg-black text-white font-semibold">Add New Product</Button>
         </div>
-        <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4"></div>
+        <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+            {
+                productList && productList.length > 0
+                    ? productList.map(productItem => (
+                        <AdminProductTile product={productItem} />
+                    ))
+                    : null
+            }
+        </div>
         <Sheet
             open={openCreateProductsDialog}
             onOpenChange={() => {

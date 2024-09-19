@@ -57,6 +57,7 @@ export const addProductFormElements = [
     {
         label: 'Category',
         name: 'category',
+        componentType: 'select',
         options: [
             { id: "men", label: "Men" },
             { id: "women", label: "Women" },
@@ -68,6 +69,7 @@ export const addProductFormElements = [
     {
         label: 'Brand',
         name: 'brand',
+        componentType: 'select',
         options: [
             { id: "nike", label: "Nike" },
             { id: "adidas", label: "Adidas" },
@@ -85,7 +87,7 @@ export const addProductFormElements = [
         placeholder: 'Enter product price',
     },
     {
-        label: 'Sale PRice',
+        label: 'Sale Price',
         name: 'salePrice',
         componentType: 'input',
         type: 'number',

@@ -38,10 +38,11 @@ function AdminProducts() {
 
     function onSubmit(event) {
         event.preventDefault();
-        dispatch(addNewProduct({
-            ...formData,
-            image: uploadedImageUrl,
-        })
+        dispatch(
+            addNewProduct({
+                ...formData,
+                image: uploadedImageUrl,
+            })
         ).then((data) => {
             console.log(data);
             if (data?.payload?.success) {
@@ -61,9 +62,10 @@ function AdminProducts() {
         dispatch(fetchAllProducts())
     }, [dispatch])
 
-    console.log(productList, uploadedImageUrl, "productList");
+    // console.log(productList, uploadedImageUrl, "productList");
+    console.log(formData, "productList");
 
-    return <Fragment>
+    return (<Fragment>
         <div className="mb-5 w-full flex justify-end">
             <Button onClick={() => setOpenCreateProductsDialog(true)} className="bg-black text-white font-semibold">Add New Product</Button>
         </div>
@@ -92,7 +94,12 @@ function AdminProducts() {
         >
             <SheetContent side="right" className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full">
                 <SheetHeader>
-                    <SheetTitle>Add New Product</SheetTitle>
+                    {/* <SheetTitle>Add New Product</SheetTitle> */}
+                    <SheetTitle>
+                        {
+                            curretEditedId !== null ? 'Edit Product' : 'Add New Product'
+                        }
+                    </SheetTitle>
                 </SheetHeader>
                 <ProductImageUpload
                     imageFile={imageFile}
@@ -110,13 +117,15 @@ function AdminProducts() {
                         onSubmit={onSubmit}
                         formData={formData}
                         setFormData={setFormData}
-                        buttonText="Add"
+                        // buttonText="Add"
+                        buttonText={curretEditedId !== null ? 'Edit' : 'Add'}
                         formControls={addProductFormElements}
                     />
                 </div>
             </SheetContent>
         </Sheet>
     </Fragment >
+    )
 }
 
 export default AdminProducts;

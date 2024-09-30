@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { addProductFormElements } from "@/config";
 import { useToast } from "@/hooks/use-toast";
-import { addNewProduct, editProduct, fetchAllProducts } from "@/store/admin/products-slice";
+import { addNewProduct, deleteProduct, editProduct, fetchAllProducts } from "@/store/admin/products-slice";
 import { Description } from "@radix-ui/react-toast";
 
 import { Fragment, useEffect, useState } from "react";
@@ -71,6 +71,15 @@ function AdminProducts() {
             });
     }
 
+    function handleDelete(getCurrentProductId) {
+        // console.log(getCurrentProductId);
+        dispatch(deleteProduct(getCurrentProductId)).then(data => {
+            if (data?.payload?.success) {
+                dispatch(fetchAllProducts());
+            }
+        });
+    }
+
     function isFormValid() {
         return Object.keys(formData)
             .map(key => formData[key] !== '').
@@ -97,6 +106,7 @@ function AdminProducts() {
                             setOpenCreateProductsDialog={setOpenCreateProductsDialog}
                             setCurrentEditedId={setCurrentEditedId}
                             product={productItem}
+                            handleDelete={handleDelete}
                         />
                         // <AdminProductTile key={product.id} product={productItem} />
                     ))

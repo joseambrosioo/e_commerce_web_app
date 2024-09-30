@@ -44,6 +44,12 @@ function AdminProducts() {
                 id: curretEditedId, formData
             })).then((data) => {
                 console.log(data, 'edit');
+                if (data?.payload?.success) {
+                    dispatch(fetchAllProducts());
+                    setFormData(initialFormData);
+                    setOpenCreateProductsDialog(false);
+                    setCurrentEditedId(null);
+                }
             })
             : dispatch(
                 addNewProduct({

@@ -109,7 +109,9 @@ const editProduct = async (req, res) => {
         findProduct.description = description || findProduct.description;
         findProduct.category = category || findProduct.category;
         findProduct.brand = brand || findProduct.brand;
-        findProduct.price = price || findProduct.price;
+        // findProduct.price = price || findProduct.price;
+        findProduct.price =
+            price === "" ? 0 : price || findProduct.price;
         // findProduct.salePrice = salePrice || findProduct.salePrice
         findProduct.salePrice =
             salePrice === "" ? 0 : salePrice || findProduct.salePrice;

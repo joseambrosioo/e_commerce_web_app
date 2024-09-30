@@ -6,7 +6,14 @@ import { Input } from "../ui/input";
 import { Select, SelectTrigger, SelectItem, SelectValue, SelectContent } from "../ui/select";
 
 
-function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText }) {
+function CommonForm({
+    formControls,
+    formData,
+    setFormData,
+    onSubmit,
+    buttonText,
+    isBtnDisabled,
+}) {
     function renderInputByComponentType(getControlItem) {
         let element = null;
         const value = formData[getControlItem.name];
@@ -95,7 +102,7 @@ function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText 
                     </div>
                 ))}
             </div>
-            <Button type="submit" className="mt-2 w-full bg-black text-white font-semibold">
+            <Button disabled={isBtnDisabled} type="submit" className="mt-2 w-full bg-black text-white font-semibold">
                 {/* <Button type="submit" className="mt-2 w-full"> */}
                 {/* Create Account */}
                 {buttonText}

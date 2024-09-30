@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { addProductFormElements } from "@/config";
 import { useToast } from "@/hooks/use-toast";
-import { addNewProduct, fetchAllProducts } from "@/store/admin/products-slice";
+import { addNewProduct, editProduct, fetchAllProducts } from "@/store/admin/products-slice";
 import { Description } from "@radix-ui/react-toast";
 
 import { Fragment, useEffect, useState } from "react";
@@ -38,24 +38,31 @@ function AdminProducts() {
 
     function onSubmit(event) {
         event.preventDefault();
-        dispatch(
-            addNewProduct({
-                ...formData,
-                image: uploadedImageUrl,
-            })
-        ).then((data) => {
-            console.log(data);
-            if (data?.payload?.success) {
-                dispatch(fetchAllProducts())
-                setOpenCreateProductsDialog(false)
-                setImageFile(null);
-                setFormData(initialFormData);
-                toast({
-                    title: 'Product added successfully'
 
+        curretEditedId != null ?
+            dispatch(editProduct({
+                id: curretEditedId, formData
+            })).then((data) => {
+                console.log(data, 'edit');
+            })
+            : dispatch(
+                addNewProduct({
+                    ...formData,
+                    image: uploadedImageUrl,
                 })
-            }
-        });
+            ).then((data) => {
+                console.log(data);
+                if (data?.payload?.success) {
+                    dispatch(fetchAllProducts())
+                    setOpenCreateProductsDialog(false)
+                    setImageFile(null);
+                    setFormData(initialFormData);
+                    toast({
+                        title: 'Product added successfully'
+
+                    })
+                }
+            });
     }
 
     useEffect(() => {

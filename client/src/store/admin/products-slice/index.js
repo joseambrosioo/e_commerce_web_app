@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+// import mongoose from 'mongoose';
+// const mongoose = require('mongoose');
 
 
 const initialState = {
@@ -9,10 +11,10 @@ const initialState = {
 
 export const addNewProduct = createAsyncThunk(
     '/products/addNewProduct',
-    async (formaData) => {
+    async (formData) => {
         const result = await axios.post(
             'http://localhost:5000/api/admin/products/add',
-            formaData,
+            formData,
             {
                 headers: {
                     'Content-Type': 'application/json'
@@ -34,17 +36,18 @@ export const fetchAllProducts = createAsyncThunk(
     }
 );
 
-export const editNewProduct = createAsyncThunk(
-    '/products/editNewProduct',
-    async (id, formaData) => {
+export const editProduct = createAsyncThunk(
+    '/products/editProduct',
+    async ({ id, formData }) => {
         const result = await axios.put(
             `http://localhost:5000/api/admin/products/edit/${id}`,
-            formaData,
+            formData,
             {
                 headers: {
                     'Content-Type': 'application/json'
-                }
-            })
+                },
+            }
+        );
 
         return result?.data;
     }

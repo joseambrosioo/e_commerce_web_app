@@ -1,3 +1,5 @@
+// import mongoose from 'mongoose';
+// const mongoose = require('mongoose');
 const { imageUploadUtil } = require('../../helpers/cloudinary');
 const Product = require('../../models/Product');
 
@@ -16,7 +18,7 @@ const handleImageUpload = async (req, res) => {
         res.json({
             success: false,
             message: "Error occurred",
-            error: error.message
+            // error: error.message
         });
     }
 };
@@ -80,6 +82,12 @@ const fetchAllProducts = async (req, res) => {
 const editProduct = async (req, res) => {
     try {
         const { id } = req.params;
+
+        // // Validate that `id` is a valid ObjectId
+        // if (!mongoose.Types.ObjectId.isValid(id)) {
+        //     return res.status(400).json({ success: false, message: 'Invalid Product ID' });
+        // }
+
         const {
             image,
             title,
@@ -97,14 +105,16 @@ const editProduct = async (req, res) => {
             message: 'Product not found'
         });
 
-        findProduct.title = title || findProduct.title
-        findProduct.description = description || findProduct.description
-        findProduct.category = category || findProduct.category
-        findProduct.brand = brand || findProduct.brand
-        findProduct.price = price || findProduct.price
-        findProduct.salePrice = salePrice || findProduct.salePrice
-        findProduct.totalStock = totalStock || findProduct.totalStock
-        findProduct.image = image || findProduct.image
+        findProduct.title = title || findProduct.title;
+        findProduct.description = description || findProduct.description;
+        findProduct.category = category || findProduct.category;
+        findProduct.brand = brand || findProduct.brand;
+        findProduct.price = price || findProduct.price;
+        // findProduct.salePrice = salePrice || findProduct.salePrice
+        findProduct.salePrice =
+            salePrice === "" ? 0 : salePrice || findProduct.salePrice;
+        findProduct.totalStock = totalStock || findProduct.totalStock;
+        findProduct.image = image || findProduct.image;
 
         await findProduct.save();
         res.status(200).json({
@@ -112,7 +122,8 @@ const editProduct = async (req, res) => {
             data: findProduct,
         });
     } catch (e) {
-        console.log(e)
+        // console.log(e)
+        console.log("Error in editProduct:", e);
         res.status(500).json({
             success: false,
             message: "Some error occured!",
@@ -145,4 +156,10 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-module.exports = { handleImageUpload, addProduct, fetchAllProducts, editProduct, deleteProduct }
+module.exports = {
+    handleImageUpload,
+    addProduct,
+    fetchAllProducts,
+    editProduct,
+    deleteProduct
+};

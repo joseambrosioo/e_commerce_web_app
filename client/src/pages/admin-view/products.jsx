@@ -86,6 +86,8 @@ function AdminProducts() {
             open={openCreateProductsDialog}
             onOpenChange={() => {
                 setOpenCreateProductsDialog(false);
+                setCurrentEditedId(null)
+                setFormData(initialFormData)
             }}
         >
             <SheetContent side="right" className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full">
@@ -99,6 +101,8 @@ function AdminProducts() {
                     setUploadedImageUrl={setUploadedImageUrl}
                     setImageLoadingState={setImageLoadingState}
                     imageLoadingState={imageLoadingState}
+                    setCurrentEditedId={curretEditedId}
+                    isEditMode={curretEditedId !== null}
 
                 />
                 < div className="py-6">

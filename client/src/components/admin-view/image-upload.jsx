@@ -13,9 +13,12 @@ function ProductImageUpload({
     uploadedImageUrl,
     setUploadedImageUrl,
     setImageLoadingState,
+    isEditMode
 }) {
 
     const inputRef = useRef(null)
+
+    // console.log(isEditMode, '')
 
     function handleImageFileChange(event) {
         console.log(event.target.files);
@@ -63,17 +66,30 @@ function ProductImageUpload({
     return (
         <div className="w-full max-w-md mx-auto mt-4">
             <Label className="text-lg font-semibold mb-2 block">Upload Image</Label>
-            <div onDragOver={handleDragOver} onDrop={handleDrop} className="border-2 border-dashed rounded-lg p-4">
+            <div
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                className="border-2 border-dashed rounded-lg p-4"
+            // className={`${isEditedMode ? 'opacitiy-60' : ""
+            // } border-2 border-dashed rounded-lg p-4`} // if I want to disable image upload when editing a product details
+
+            >
                 <Input
                     id="image-upload"
                     type="file"
                     className="hidden"
                     ref={inputRef}
                     onChange={handleImageFileChange}
+                // disabled={isEditeMode} // if I want to disable image upload when editing a product details
                 />
                 {
                     !imageFile ? (
-                        < Label htmlFor="image-upload" className="flex flex-col items-center justify-center h-32 cursor-pointer">
+                        < Label
+                            htmlFor="image-upload"
+                            className={"flex flex-col items-center justify-center h-32 cursor-pointer"}
+                        // className={`${isEditMode ? 'cursor-not-allowed' : ""
+                        //     }flex flex-col items-center justify-center h-32 cursor-pointer`} // if I want to deactivate the image upload when editing a product details
+                        >
                             <UploadCloudIcon className="w-10 h-10 text-muted-foreground mb-2" />
                             <span>Drag & drog or click to upload image</span>
                         </Label>

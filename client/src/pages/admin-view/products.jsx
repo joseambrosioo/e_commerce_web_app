@@ -29,6 +29,9 @@ function AdminProducts() {
     const [imageFile, setImageFile] = useState(null);
     const [uploadedImageUrl, setUploadedImageUrl] = useState('');
     const [imageLoadingState, setImageLoadingState] = useState(false);
+    const [curretEditedId, setCurrentEditedId] = useState(null)
+
+
     const { productList } = useSelector(state => state.adminProducts)
     const dispatch = useDispatch();
     const { toast } = useToast();
@@ -68,7 +71,13 @@ function AdminProducts() {
             {
                 productList && productList.length > 0
                     ? productList.map(productItem => (
-                        <AdminProductTile product={productItem} />
+                        <AdminProductTile
+                            setFormData={setFormData}
+                            setOpenCreateProductsDialog={setOpenCreateProductsDialog}
+                            setCurrentEditedId={setCurrentEditedId}
+                            product={productItem}
+                        />
+                        // <AdminProductTile key={product.id} product={productItem} />
                     ))
                     : null
             }

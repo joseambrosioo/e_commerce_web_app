@@ -20,7 +20,9 @@ function ProductFilter() {
                                     {
                                         filterOptions[keyItem].map(option => (
                                             <Label className="flex font-medium items-center gap-2">
-                                                <Checkbox />
+                                                <Checkbox
+
+                                                />
                                                 {option.label}
                                             </Label>
                                         ))

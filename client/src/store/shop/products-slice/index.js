@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     isLoading: false,
-    productsList: [],
+    productList: [],
     reducers: {},
     extraReducers: (builder) => {
 
@@ -34,11 +34,11 @@ const shopProductSlice = createSlice({
             console.log(action.payload);
 
             state.isLoading = false
-            state.productsList = action.payload
+            state.productList = action.payload
         }).addCase(fetchAllFilteredProducts.rejected, (state, action) => {
 
             state.isLoading = false
-            state.productsList = []
+            state.productList = []
         })
     }
 })

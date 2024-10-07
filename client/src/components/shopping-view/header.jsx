@@ -1,9 +1,10 @@
-import { HousePlug, Menu } from "lucide-react";
+import { HousePlug, Menu, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { useSelector } from "react-redux";
 import { shoppingViewHeaderMenuItems } from "@/config";
+import { DropdownMenu, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 
 function MenuItems() {
     return (
@@ -21,6 +22,20 @@ function MenuItems() {
             }
         </nav >
     );
+}
+
+function HeaderRightContent() {
+    return <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+        <Button variant="outline" size="icon">
+            <ShoppingCart className="w-6 h-6" />
+            <span className="sr-only">User cart</span>
+        </Button>
+        <DropdownMenu >
+            <DropdownMenuTrigger asChild>
+
+            </DropdownMenuTrigger>
+        </DropdownMenu>
+    </div>
 }
 
 function ShoppingHeader() {
@@ -48,7 +63,11 @@ function ShoppingHeader() {
                 <MenuItems />
             </div>
             {
-                isAuthenticated ? <div></div> : null
+                isAuthenticated ? (
+                    < div >
+                        <HeaderRightContent />
+                    </div>
+                ) : null
             }
         </div>
     </header >

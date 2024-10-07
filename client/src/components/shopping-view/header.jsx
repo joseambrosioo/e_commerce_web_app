@@ -86,18 +86,19 @@ function ShoppingHeader() {
                 </SheetTrigger>
                 <SheetContent side="left" className="w-full max-w-xs">
                     <MenuItems />
+                    <HeaderRightContent />
                 </SheetContent>
             </Sheet>
             <div className="hidden lg:block">
                 <MenuItems />
             </div>
-            {
-                isAuthenticated ? (
-                    < div >
-                        <HeaderRightContent />
-                    </div>
-                ) : null
-            }
+            {/* {
+                isAuthenticated ? ( */}
+            < div className="hidden lg:block">
+                <HeaderRightContent />
+            </div>
+            {/* ) : null
+         } */}
         </div>
     </header >
 }

@@ -1,10 +1,11 @@
-import { HousePlug, Menu, ShoppingCart } from "lucide-react";
+import { HousePlug, Menu, ShoppingCart, UserRound } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { useSelector } from "react-redux";
 import { shoppingViewHeaderMenuItems } from "@/config";
-import { DropdownMenu, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
 
 function MenuItems() {
     return (
@@ -25,6 +26,8 @@ function MenuItems() {
 }
 
 function HeaderRightContent() {
+    const { isAuthenticated, user } = useSelector(state => state.auth)
+
     return <div className="flex lg:items-center lg:flex-row flex-col gap-4">
         <Button variant="outline" size="icon">
             <ShoppingCart className="w-6 h-6" />
@@ -32,8 +35,20 @@ function HeaderRightContent() {
         </Button>
         <DropdownMenu >
             <DropdownMenuTrigger asChild>
-
+                <Avatar className="bg-black">
+                    <AvatarFallback className="bg-black text-white font-extrabold">
+                        {user?.userName[0].toUpperCase()}
+                    </AvatarFallback>
+                </Avatar>
             </DropdownMenuTrigger>
+            <DropdownMenuContent side="right" className="w-56">
+                <DropdownMenuLabel>Logged in as {user?.userName} </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                    <UserRound className="mr-2 h-4 w-4" />
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+            </DropdownMenuContent>
         </DropdownMenu>
     </div>
 }
@@ -41,6 +56,8 @@ function HeaderRightContent() {
 function ShoppingHeader() {
 
     const { isAuthenticated } = useSelector(state => state.auth)
+
+    // console.log(user, 'useruseruser');
 
     return <header className="sticky top-0 z-40 w-full border-b bg-background">
         <div className="flex h-16 item-center justify-between px-4 md:px-6">

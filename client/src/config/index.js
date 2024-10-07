@@ -125,4 +125,14 @@ export const shoppingViewHeaderMenuItems = [
         label: 'Kids',
         path: '/shop/listing'
     },
+    // {
+    //     id: 'watch',
+    //     label: 'Watch',
+    //     path: '/shop/listing'
+    // },
+    // {
+    //     id: 'accessories',
+    //     label: 'Accessories',
+    //     path: '/shop/listing'
+    // },
 ]

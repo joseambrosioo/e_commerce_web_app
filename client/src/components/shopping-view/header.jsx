@@ -3,6 +3,25 @@ import { Link } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { useSelector } from "react-redux";
+import { shoppingViewHeaderMenuItems } from "@/config";
+
+function MenuItems() {
+    return (
+        <nav className="flex flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
+            {
+                shoppingViewHeaderMenuItems.map(menuItem => (
+                    <Link
+                        className="text-sm font-medium"
+                        key={menuItem.id}
+                        to={menuItem.path}
+                    >
+                        {menuItem.label}
+                    </Link>
+                ))
+            }
+        </nav >
+    );
+}
 
 function ShoppingHeader() {
 
@@ -26,7 +45,7 @@ function ShoppingHeader() {
                 </SheetContent>
             </Sheet>
             <div className="hidden lg:block">
-
+                <MenuItems />
             </div>
             {
                 isAuthenticated ? <div></div> : null

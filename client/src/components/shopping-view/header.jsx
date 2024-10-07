@@ -41,7 +41,7 @@ function ShoppingHeader() {
                     </Button>
                 </SheetTrigger>
                 <SheetContent side="left" className="w-full max-w-xs">
-
+                    <MenuItems />
                 </SheetContent>
             </Sheet>
             <div className="hidden lg:block">

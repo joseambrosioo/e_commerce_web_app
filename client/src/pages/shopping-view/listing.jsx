@@ -1,6 +1,13 @@
 import ProductFilter from "@/components/shopping-view/filter";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuTrigger,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+} from "@/components/ui/dropdown-menu";
+import { sortOptions } from "@/config";
 import { ArrowUpDownIcon } from "lucide-react";
 
 function ShoppingListing() {
@@ -19,6 +26,20 @@ function ShoppingListing() {
                                     <span>Sort by</span>
                                 </Button>
                             </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-[200px]">
+                                <DropdownMenuRadioGroup>
+                                    {
+                                        sortOptions.map(sortItem => (
+                                            <DropdownMenuRadioItem
+                                                // value={sortItem.id}
+                                                key={sortItem.id}
+                                            >
+                                                {sortItem.label}
+                                            </DropdownMenuRadioItem>
+                                        ))
+                                    }
+                                </DropdownMenuRadioGroup>
+                            </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
                 </div>

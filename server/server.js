@@ -4,9 +4,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const authRouter = require('./routes/auth/auth-routes');
 const adminProductsRouter = require('./routes/admin/products-routes')
-
-//create a database connection or
-//create a separate file for this and then import/use that file here
+const shopProductsRouter = require('./routes/shop/products-routes')
 
 mongoose.connect('mongodb+srv://jose-ambrosio:KUdtFQDBm37sDUwN@jose-ambrosio.ke25r.mongodb.net/').then(() => console.log('MongoDB connected')).catch(error => console.log);
 
@@ -36,6 +34,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use('/api/auth', authRouter);
-app.use('/api/admin/products', adminProductsRouter)
+app.use('/api/admin/products', adminProductsRouter);
+app.use('/api/shop', shopProductsRouter);
 
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));

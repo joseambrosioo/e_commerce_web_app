@@ -19,7 +19,7 @@ function ShoppingListing() {
 
     const dispatch = useDispatch();
     const { productList } = useSelector(state => state.shopProducts);
-    const [filters, setFilters] = useState(null);
+    const [filters, setFilters] = useState({});
     const [sort, setSort] = useState(null);
 
     function handleSort(value) {
@@ -27,16 +27,43 @@ function ShoppingListing() {
         setSort(value);
     }
 
+    function handleFilter(getSectionId, getCurrentOption) {
+        console.log(getSectionId, getCurrentOption);
+
+        let cpyFilters = { ...filters };
+        const indexOfCurrentSection = Object.keys(cpyFilters).indexOf(getSectionId);
+
+        if (indexOfCurrentSection === -1) {
+            cpyFilters = {
+                ...cpyFilters,
+                [getSectionId]: [getCurrentOption]
+            };
+        }
+        else {
+            const indexOfCurrentOption = cpyFilters[getSectionId].indexOf(getCurrentOption);
+
+            if (indexOfCurrentOption === -1)
+                cpyFilters[getSectionId].push(getCurrentOption)
+            else
+                cpyFilters[getSectionId].splice(indexOfCurrentOption, 1)
+        }
+        console.log(cpyFilters);
+        setFilters(cpyFilters);
+    }
+
+
+
     // fetch list of products
     useEffect(() => {
         dispatch(fetchAllFilteredProducts());
     }, [dispatch]);
 
     console.log(productList, "productList");
+    console.log(filters, "filters");
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-6 p-4 md:p-6">
-            <ProductFilter />
+            <ProductFilter filters={filters} handleFilter={handleFilter} />
             <div className="bg-background w-full rounded-lg shadow-sm">
                 <div className="p-4 border-b flex items-center justify-between">
                     <h2 className="text-lg font-extrabold mr-2">All Products</h2>

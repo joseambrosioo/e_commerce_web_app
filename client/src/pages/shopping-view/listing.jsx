@@ -84,8 +84,9 @@ function ShoppingListing() {
 
     // fetch list of products
     useEffect(() => {
-        dispatch(fetchAllFilteredProducts());
-    }, [dispatch]);
+        if (filters !== null && sort !== null)
+            dispatch(fetchAllFilteredProducts({ filterParams: filters, sortParams: sort }));
+    }, [dispatch, sort, filters]);
 
     console.log(productList, "productList");
     console.log(filters, searchParams.toString(), "filters");

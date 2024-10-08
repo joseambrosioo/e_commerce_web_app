@@ -12,13 +12,20 @@ import { sortOptions } from "@/config";
 // import { fetchAllProducts } from "@/store/admin/products-slice";
 import { fetchAllFilteredProducts } from "@/store/shop/products-slice";
 import { ArrowUpDownIcon } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function ShoppingListing() {
 
     const dispatch = useDispatch();
     const { productList } = useSelector(state => state.shopProducts);
+    const [filters, setFilters] = useState(null);
+    const [sort, setSort] = useState(null);
+
+    function handleSort(value) {
+        console.log(value);
+        setSort(value);
+    }
 
     // fetch list of products
     useEffect(() => {
@@ -34,7 +41,7 @@ function ShoppingListing() {
                 <div className="p-4 border-b flex items-center justify-between">
                     <h2 className="text-lg font-extrabold mr-2">All Products</h2>
                     <div className="flex items-center gap-3">
-                        <span className="text-muted-foreground">10 Products</span>
+                        <span className="text-muted-foreground">{productList?.length} Products</span>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" size="sm" className="flex items-center gap-1">
@@ -43,7 +50,7 @@ function ShoppingListing() {
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-[200px]">
-                                <DropdownMenuRadioGroup>
+                                <DropdownMenuRadioGroup value={sort} onValueChange={handleSort}>
                                     {
                                         sortOptions.map(sortItem => (
                                             <DropdownMenuRadioItem

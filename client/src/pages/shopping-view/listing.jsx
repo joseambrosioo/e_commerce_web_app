@@ -49,9 +49,13 @@ function ShoppingListing() {
         }
         console.log(cpyFilters);
         setFilters(cpyFilters);
+        sessionStorage.setItem("filters", JSON.stringify(cpyFilters));
     }
 
-
+    useEffect(() => {
+        setSort('price-lowtohigh');
+        setFilters(JSON.parse(sessionStorage.getItem('filters')) || {})
+    }, []);
 
     // fetch list of products
     useEffect(() => {

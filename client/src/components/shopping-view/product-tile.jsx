@@ -1,6 +1,6 @@
-const { Badge } = require("../ui/badge");
-const { Button } = require("../ui/button");
-const { Card, CardContent, CardFooter } = require("../ui/card");
+import { Card, CardContent, CardFooter } from "../ui/card";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 function ShoppingProductTile({ product }) {
     return (

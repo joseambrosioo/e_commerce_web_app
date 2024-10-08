@@ -1,22 +1,29 @@
 const reducer = "@/hooks/use-toast";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 
 const initialState = {
     isLoading: false,
     productList: [],
-    reducers: {},
-    extraReducers: (builder) => {
+    // reducers: {},
+    // extraReducers: (builder) => {
 
-    }
+    // }
 }
 
 export const fetchAllFilteredProducts = createAsyncThunk(
     '/products/fetchAllProducts',
     async () => {
+        console.log(fetchAllFilteredProducts, "fetchAllFilteredProducts");
+
         const result = await axios.get(
             'http://localhost:5000/api/shop/products/get',
+            // `http://localhost:5000/api/shop/products/get?${query}`
         );
+
+        console.log(result.data);
+
 
         return result?.data;
     }
@@ -24,22 +31,23 @@ export const fetchAllFilteredProducts = createAsyncThunk(
 
 
 const shopProductSlice = createSlice({
-    name: 'shoppingProducts',
+    name: 'shopProducts',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchAllFilteredProducts.pending, (state, action) => {
-            state.isLoading = true
-        }).addCase(fetchAllFilteredProducts.fulfilled, (state, action) => {
-            console.log(action.payload);
+        builder
+            .addCase(fetchAllFilteredProducts.pending, (state, action) => {
+                state.isLoading = true;
+            }).addCase(fetchAllFilteredProducts.fulfilled, (state, action) => {
+                console.log(action.payload, 'action.payload');
 
-            state.isLoading = false
-            state.productList = action.payload
-        }).addCase(fetchAllFilteredProducts.rejected, (state, action) => {
+                state.isLoading = false;
+                state.productList = action.payload.data;
+            }).addCase(fetchAllFilteredProducts.rejected, (state, action) => {
 
-            state.isLoading = false
-            state.productList = []
-        })
+                state.isLoading = false;
+                state.productList = [];
+            })
     }
 })
 

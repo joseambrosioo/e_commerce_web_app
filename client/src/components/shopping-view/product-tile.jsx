@@ -10,7 +10,7 @@ function ShoppingProductTile({ product }) {
                     <img
                         src={product?.image}
                         alt={product?.title}
-                        className="w-dull h-[300px] object-cover rounded-t-lg"
+                        className="w-full h-[300px] object-cover rounded-t-lg"
                     />
                     {
                         product?.salePrice > 0 ?
@@ -40,3 +40,5 @@ function ShoppingProductTile({ product }) {
         </Card >
     );
 }
+
+export default ShoppingProductTile;

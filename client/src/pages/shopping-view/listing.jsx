@@ -8,7 +8,7 @@ import {
     DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
 import { sortOptions } from "@/config";
-import { fetchAllProducts } from "@/store/admin/products-slice";
+// import { fetchAllProducts } from "@/store/admin/products-slice";
 import { fetchAllFilteredProducts } from "@/store/shop/products-slice";
 import { ArrowUpDownIcon } from "lucide-react";
 import { useEffect } from "react";
@@ -46,7 +46,7 @@ function ShoppingListing() {
                                     {
                                         sortOptions.map(sortItem => (
                                             <DropdownMenuRadioItem
-                                                // value={sortItem.id}
+                                                value={sortItem.id}
                                                 key={sortItem.id}
                                             >
                                                 {sortItem.label}

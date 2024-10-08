@@ -101,9 +101,9 @@ function ShoppingListing() {
                     {
                         productList && productList.length > 0 ?
                             productList.map(
-                                productItem =>
+                                productItem => (
                                     <ShoppingProductTile product={productItem} key={productItem.id} />
-                            ) : null
+                                )) : null
                     }
                 </div>
             </div>

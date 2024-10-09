@@ -18,11 +18,6 @@ BuyHere is an e-commerce platform built with JavaScript, React.js, Node.js, Expr
 - **Database**: MongoDB (NoSQL)
 
 ## Resources
-### Courses
-- [Mastering JavaScript](https://codewithmosh.com/p/ultimate-javascript-series)
-- [Complete Node.js Course](https://codewithmosh.com/p/the-complete-node-js-course)
-- [Mastering React](https://codewithmosh.com/p/mastering-react)
-
 ### Documentation
 - [JavaScript Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [React.js Documentation](https://reactjs.org/docs/getting-started.html)
@@ -30,13 +25,13 @@ BuyHere is an e-commerce platform built with JavaScript, React.js, Node.js, Expr
 - [Express.js Documentation](https://expressjs.com/)
 - [MongoDB Documentation](https://docs.mongodb.com/)
 
-### E-commerce and Hotel Resources
-- [Hotel E-commerce Platforms](https://www.tnooz.com/article/10-top-e-commerce-platforms-hotel-industry-2019/)
-- [Designing Hotel Websites](https://www.lodgingmagazine.com/the-dos-and-donts-of-e-commerce-hotel-websites/)
+### Learning Resources
+- [Mastering JavaScript](https://codewithmosh.com/p/ultimate-javascript-series)
+- [Complete Node.js Course](https://codewithmosh.com/p/the-complete-node-js-course)
+- [Mastering React](https://codewithmosh.com/p/mastering-react)
 
-### E-commerce and Hotel Resources
-- [Hotel E-commerce Platforms](https://www.tnooz.com/article/10-top-e-commerce-platforms-hotel-industry-2019/)
-- [Designing Hotel Websites](https://www.lodgingmagazine.com/the-dos-and-donts-of-e-commerce-hotel-websites/)
-
+### E-commerce Operations Insights
+- [DotKonnekt Shopify Customization Guide](https://www.dotkonnekt.com/blogs/convert-instantly/shopify-checkouts-unleashing-the-power-of-customization?utm_source=sangria&utm_medium=sangria_blogs&utm_campaign=sangria_organic)
+  
 ## Credits
 - **Icons**: Icons used in this project are from [Lucide](https://lucide.dev/) and [ShadCN UI](https://ui.shadcn.com/).

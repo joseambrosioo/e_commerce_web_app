@@ -1,5 +1,5 @@
 # csci897_project_fhsu_f2024
-# BuyHere - E-Commerce Web App
+# BuyHere - E-Commerce Platform
 
 ## Project Overview
 BuyHere is an e-commerce platform built with JavaScript, React.js, Express.js, Node.js, and MongoDB. The platform allows customers/users to browse, purchase products, and manage their orders, while admins can manage inventory and process orders.

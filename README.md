@@ -34,4 +34,4 @@ BuyHere is an e-commerce platform built with JavaScript, React.js, Express.js, N
 - [DotKonnekt Shopify Customization Guide](https://www.dotkonnekt.com/blogs/convert-instantly/shopify-checkouts-unleashing-the-power-of-customization?utm_source=sangria&utm_medium=sangria_blogs&utm_campaign=sangria_organic)
   
 ## Credits
-- **Icons and Components Libraries**: [Lucide](https://lucide.dev/) and [ShadCN UI](https://ui.shadcn.com/).
+- **Icons and Components CSS Libraries**: [Lucide](https://lucide.dev/) and [ShadCN UI](https://ui.shadcn.com/).

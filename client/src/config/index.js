@@ -160,8 +160,8 @@ export const filterOptions = {
         { id: "men", label: "Men" },
         { id: "women", label: "Women" },
         { id: "kids", label: "Kids" },
-        { id: "accessories", label: "Accessories" },
-        { id: "footwear", label: "Footwear" },
+        // { id: "accessories", label: "Accessories" },
+        // { id: "footwear", label: "Footwear" },
     ],
     brand: [
         { id: "nike", label: "Nike" },

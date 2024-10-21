@@ -59,7 +59,7 @@ const getProductDetails = async (req, res) => {
       });
 
     res.status(200).json({
-      success: false,
+      success: true,
       data: product,
     });
   } catch (e) {

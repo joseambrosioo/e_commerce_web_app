@@ -36,7 +36,24 @@ const addToCart = async (req, res) => {
     }
 
     await cart.save();
-    res.status(200).json({ succes: true, data: cart });
+    // res.status(200).json({ succes: true, data: cart });
+
+    const populateCartItems = cart.items.map((item) => ({
+      productId: item.productId._id,
+      image: item.productId.image,
+      title: item.productId.title,
+      price: item.productId.price,
+      salePrice: item.productId.salePrice,
+      quantity: item.quantity,
+    }));
+
+    res.status(200).json({
+      success: true,
+      data: {
+        ...cart._doc,
+        items: populateCartItems,
+      },
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Error" });

@@ -7,7 +7,7 @@ const {
   deleteCartItem,
 } = require("../../controllers/shop/cart-controller");
 
-const router = express.Ruoter();
+const router = express.Router();
 
 router.post("/add", addToCart);
 router.get("/get/:userId", fetchCartItems);

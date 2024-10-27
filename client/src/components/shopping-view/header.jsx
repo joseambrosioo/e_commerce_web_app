@@ -45,6 +45,10 @@ function HeaderRightContent() {
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+      {/* <Sheet
+        open={openCartSheet}
+        onOpenChange={(open) => setOpenCartSheet(open)}
+        > */}
       <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
         <Button
           onClick={() => setOpenCartSheet(true)}

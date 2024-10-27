@@ -3,7 +3,7 @@ const Product = require("../../models/Product");
 
 const addToCart = async (req, res) => {
   try {
-    const { userId, Productid, quantity } = req.body;
+    const { userId, productId, quantity } = req.body;
 
     if (!userId || !productId || quantity <= 0) {
       return res
@@ -11,7 +11,7 @@ const addToCart = async (req, res) => {
         .json({ success: false, message: "Invalid data provided!" });
     }
 
-    const product = await Product.findById(productid);
+    const product = await Product.findById(productId);
 
     if (!product) {
       return res
@@ -181,7 +181,7 @@ const deleteCartItem = async (req, res) => {
 
     await cart.save();
 
-    await Cart.populate({
+    await cart.populate({
       path: "item.productId",
       select: "image title price salePrice",
     });

@@ -4,7 +4,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  cartItem: [],
+  cartItems: [],
   isLoading: false,
 };
 
@@ -71,7 +71,7 @@ const shoppingCartSlice = createSlice({
       .addCase(addToCart.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(addToCart.fulfilled, (state) => {
+      .addCase(addToCart.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cartItems = action.payload.data;
       })
@@ -82,7 +82,7 @@ const shoppingCartSlice = createSlice({
       .addCase(fetchCartItems.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchCartItems.fulfilled, (state) => {
+      .addCase(fetchCartItems.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cartItems = action.payload.data;
       })
@@ -93,7 +93,7 @@ const shoppingCartSlice = createSlice({
       .addCase(updateCartItemQuantity.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(updateCartItemQuantity.fulfilled, (state) => {
+      .addCase(updateCartItemQuantity.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cartItems = action.payload.data;
       })
@@ -104,7 +104,7 @@ const shoppingCartSlice = createSlice({
       .addCase(deleteCartItem.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteCartItem.fulfilled, (state) => {
+      .addCase(deleteCartItem.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cartItems = action.payload.data;
       })

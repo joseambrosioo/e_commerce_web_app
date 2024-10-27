@@ -10,7 +10,7 @@ import {
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
 import { sortOptions } from "@/config";
-import { addToCart } from "@/store/shop/cart-slice";
+import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 // import { fetchAllProducts } from "@/store/admin/products-slice";
 import {
   fetchAllFilteredProducts,
@@ -42,6 +42,7 @@ function ShoppingListing() {
     (state) => state.shopProducts
   );
   const { user } = useSelector((state) => state.auth);
+  const { cartItems } = useSelector((state) => state.shopCart);
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -89,7 +90,9 @@ function ShoppingListing() {
         productId: getCurrentProductId,
         quantity: 1,
       })
-    ).then((data) => console.log(data));
+    ).then((data) => {
+      if (data?.payload?.success) dispatch(fetchCartItems(user?.id));
+    });
   }
 
   useEffect(() => {
@@ -119,6 +122,7 @@ function ShoppingListing() {
   // console.log(productList, "productList");
   // //   console.log(filters, searchParams.toString(), "filters");
   // console.log(productDetails, "productDetails");
+  console.log(cartItems, "cartItems");
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">

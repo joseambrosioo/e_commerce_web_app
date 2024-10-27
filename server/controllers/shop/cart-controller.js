@@ -56,7 +56,7 @@ const fetchCartItems = async (req, res) => {
     }
 
     const cart = await Cart.findOne({ userId }).populate({
-      path: "item.productId",
+      path: "items.productId",
       select: "image title price salePrice",
     });
 
@@ -99,6 +99,8 @@ const fetchCartItems = async (req, res) => {
 
 const updateCartItemQuantity = async (req, res) => {
   try {
+    const { userId, productId, quantity } = req.body;
+
     if (!userId || !productId || quantity <= 0) {
       return res
         .status(400)
@@ -114,7 +116,7 @@ const updateCartItemQuantity = async (req, res) => {
     }
 
     const findCurrentProductIndex = cart.items.findIndex(
-      (item) => item.product.toString() === productId
+      (item) => item.productId.toString() === productId
     );
 
     if (findCurrentProductIndex === -1) {
@@ -135,7 +137,7 @@ const updateCartItemQuantity = async (req, res) => {
     const populateCartItems = cart.items.map((item) => ({
       productId: item.productId ? item.productId._id : null,
       image: item.productId ? item.productId.image : null,
-      title: item.productId ? item.productIdtitle : null,
+      title: item.productId ? item.productId.title : null,
       price: item.productId ? item.productId.price : null,
       salePrice: item.productId ? item.productId.salePrice : null,
       quantity: item.quantity,
@@ -165,7 +167,7 @@ const deleteCartItem = async (req, res) => {
     }
 
     const cart = await Cart.findOne({ userId }).populate({
-      path: "item.productId",
+      path: "items.productId",
       select: "image title price salePrice",
     });
 
@@ -176,20 +178,20 @@ const deleteCartItem = async (req, res) => {
     }
 
     cart.items = cart.items.filter(
-      (items) => item.productId._id.toString() !== productId
+      (item) => item.productId._id.toString() !== productId
     );
 
     await cart.save();
 
     await cart.populate({
-      path: "item.productId",
+      path: "items.productId",
       select: "image title price salePrice",
     });
 
     const populateCartItems = cart.items.map((item) => ({
       productId: item.productId ? item.productId._id : null,
       image: item.productId ? item.productId.image : null,
-      title: item.productId ? item.productIdtitle : null,
+      title: item.productId ? item.productId.title : null,
       price: item.productId ? item.productId.price : null,
       salePrice: item.productId ? item.productId.salePrice : null,
       quantity: item.quantity,

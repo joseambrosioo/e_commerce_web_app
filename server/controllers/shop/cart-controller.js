@@ -200,7 +200,7 @@ const deleteCartItem = async (req, res) => {
 
     await cart.save();
 
-    await cart.populate({
+    await Cart.populate({
       path: "items.productId",
       select: "image title price salePrice",
     });

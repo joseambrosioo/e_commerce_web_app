@@ -28,6 +28,7 @@ import ShoppingProductTile from "@/components/shopping-view/product-tile";
 import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
@@ -51,6 +52,13 @@ function ShoppingHome() {
   const { productList, productDetails } = useSelector(
     (state) => state.shopProducts
   );
+
+  //   const { featureImageList } = useSelector((state) => state.commonFeature);
+
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+
+  const { user } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -71,7 +79,7 @@ function ShoppingHome() {
     dispatch(fetchProductDetails(getCurrentProductId));
   }
 
-  function handleAddtoCart(getCurrentProductId) {
+  function handleAddToCart(getCurrentProductId) {
     dispatch(
       addToCart({
         userId: user?.id,
@@ -197,7 +205,7 @@ function ShoppingHome() {
                   <ShoppingProductTile
                     handleGetProductDetails={handleGetProductDetails}
                     product={productItem}
-                    handleAddtoCart={handleAddtoCart}
+                    handleAddToCart={handleAddToCart}
                   />
                 ))
               : null}
@@ -205,8 +213,8 @@ function ShoppingHome() {
         </div>
       </section>
       <ProductDetailsDialog
-        // open={openDetailsDialog}
-        // setOpen={setOpenDetailsDialog}
+        open={openDetailsDialog}
+        setOpen={setOpenDetailsDialog}
         productDetails={productDetails}
       />
     </div>

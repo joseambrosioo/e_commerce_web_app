@@ -25,6 +25,8 @@ export const fetchAllAddresses = createAsyncThunk(
       `http://localhost:5000/api/shop/address/get/${userId}`
     );
 
+    // console.log(response.data);
+
     return response.data;
   }
 );

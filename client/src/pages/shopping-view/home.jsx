@@ -96,9 +96,9 @@ function ShoppingHome() {
     });
   }
 
-  //   useEffect(() => {
-  //     if (productDetails !== null) setOpenDetailsDialog(true);
-  //   }, [productDetails]);
+  useEffect(() => {
+    if (productDetails !== null) setOpenDetailsDialog(true);
+  }, [productDetails]);
 
   useEffect(() => {
     const timer = setInterval(() => {

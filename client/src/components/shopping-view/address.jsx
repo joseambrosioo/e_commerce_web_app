@@ -3,7 +3,11 @@ import CommonForm from "../common/form";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { addressFormControls } from "@/config";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewAddress, fetchAllAddresses } from "@/store/shop/address-slice";
+import {
+  addNewAddress,
+  deleteAddress,
+  fetchAllAddresses,
+} from "@/store/shop/address-slice";
 import AddressCard from "./addess-card";
 
 const initialAddressFormData = {
@@ -47,7 +51,64 @@ function Address() {
     //   });
 
     //   return;
+
+    // currentEditedId !== null
+    //   ? dispatch(
+    //       editaAddress({
+    //         userId: user?.id,
+    //         addressId: currentEditedId,
+    //         formData,
+    //       })
+    //     ).then((data) => {
+    //       if (data?.payload?.success) {
+    //         dispatch(fetchAllAddresses(user?.id));
+    //         setCurrentEditedId(null);
+    //         setFormData(initialAddressFormData);
+    //         toast({
+    //           title: "Address updated successfully",
+    //         });
+    //       }
+    //     })
+    //   : dispatch(
+    //       addNewAddress({
+    //         ...formData,
+    //         userId: user?.id,
+    //       })
+    //     ).then((data) => {
+    //       if (data?.payload?.success) {
+    //         dispatch(fetchAllAddresses(user?.id));
+    //         setFormData(initialAddressFormData);
+    //         toast({
+    //           title: "Address added successfully",
+    //         });
+    //       }
+    //     });
   }
+
+  function handleDeleteAddress(getCurrentAddress) {
+    dispatch(
+      deleteAddress({ userId: user?.id, addressId: getCurrentAddress._id })
+    ).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(fetchAllAddresses(user?.id));
+        toast({
+          title: "Address deleted successfully",
+        });
+      }
+    });
+  }
+
+  //   function handleEditAddress(getCuurentAddress) {
+  //     setCurrentEditedId(getCuurentAddress?._id);
+  //     setFormData({
+  //       ...formData,
+  //       address: getCuurentAddress?.address,
+  //       city: getCuurentAddress?.city,
+  //       phone: getCuurentAddress?.phone,
+  //       pincode: getCuurentAddress?.pincode,
+  //       notes: getCuurentAddress?.notes,
+  //     });
+  //   }
 
   function isFormValid() {
     return Object.keys(formData)
@@ -69,7 +130,7 @@ function Address() {
           ? addressList.map((singleAddressItem) => (
               <AddressCard
                 // selectedId={selectedId}
-                // handleDeleteAddress={handleDeleteAddress}
+                handleDeleteAddress={handleDeleteAddress}
                 addressInfo={singleAddressItem}
                 // handleEditAddress={handleEditAddress}
                 // setCurrentSelectedAddress={setCurrentSelectedAddress}

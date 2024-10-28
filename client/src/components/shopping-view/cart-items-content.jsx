@@ -1,4 +1,4 @@
-import { Minus, MinusIcon } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import { Button } from "../ui/button";
 
 function UserCartItemsContent({ cartItem }) {
@@ -12,8 +12,12 @@ function UserCartItemsContent({ cartItem }) {
       <div className="flex-1">
         <h3 className="font-extrabold">{cartItem?.title}</h3>
         <div className="flex items-center mt-1"></div>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" className="h-8 w-8 rounded-full" size="icon">
           <Minus className="w-4 h-4" />
+          <span className="sr-only">Decrease</span>
+        </Button>
+        <Button variant="outline" className="h-8 w-8 rounded-full" size="icon">
+          <Plus className="w-4 h-4" />
           <span className="sr-only">Decrease</span>
         </Button>
       </div>

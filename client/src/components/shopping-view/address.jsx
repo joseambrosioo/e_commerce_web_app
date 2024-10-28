@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addNewAddress,
   deleteAddress,
+  editAddress,
   fetchAllAddresses,
 } from "@/store/shop/address-slice";
 import AddressCard from "./addess-card";
+import { useToast } from "@/hooks/use-toast";
 
 const initialAddressFormData = {
   address: "",
@@ -18,71 +20,72 @@ const initialAddressFormData = {
   notes: "",
 };
 
-function Address() {
+function Address({ setCurrentSelectedAddress, selectedId }) {
   const [formData, setFormData] = useState(initialAddressFormData);
-  //   const [currentEditedId, setCurrentEditedId] = useState(null);
+  const [currentEditedId, setCurrentEditedId] = useState(null);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { addressList } = useSelector((state) => state.shopAddress);
-  //   const { toast } = useToast();
+  const { toast } = useToast();
 
   function handleManageAddress(event) {
     event.preventDefault();
 
-    dispatch(
-      addNewAddress({
-        ...formData,
-        userId: user?.id,
-      })
-    ).then((data) => {
-      console.log(data);
-      if (data?.payload.success) {
-        dispatch(fetchAllAddresses(user?.id));
-        // console.log(addressList);
-        setFormData(initialAddressFormData);
-      }
-    });
-
-    // if (addressList.length >= 3 && currentEditedId === null) {
-    //   setFormData(initialAddressFormData);
-    //   toast({
-    //     title: "You can add max 3 addresses",
-    //     variant: "destructive",
+    // dispatch(
+    //     addNewAddress({
+    //       ...formData,
+    //       userId: user?.id,
+    //     })
+    //   ).then((data) => {
+    //     console.log(data);
+    //     if (data?.payload.success) {
+    //       dispatch(fetchAllAddresses(user?.id));
+    //       // console.log(addressList);
+    //       setFormData(initialAddressFormData);
+    //     }
     //   });
 
-    //   return;
+    if (addressList.length >= 3 && currentEditedId === null) {
+      setFormData(initialAddressFormData);
+      toast({
+        title: "You can add max 3 addresses",
+        variant: "destructive",
+      });
 
-    // currentEditedId !== null
-    //   ? dispatch(
-    //       editaAddress({
-    //         userId: user?.id,
-    //         addressId: currentEditedId,
-    //         formData,
-    //       })
-    //     ).then((data) => {
-    //       if (data?.payload?.success) {
-    //         dispatch(fetchAllAddresses(user?.id));
-    //         setCurrentEditedId(null);
-    //         setFormData(initialAddressFormData);
-    //         toast({
-    //           title: "Address updated successfully",
-    //         });
-    //       }
-    //     })
-    //   : dispatch(
-    //       addNewAddress({
-    //         ...formData,
-    //         userId: user?.id,
-    //       })
-    //     ).then((data) => {
-    //       if (data?.payload?.success) {
-    //         dispatch(fetchAllAddresses(user?.id));
-    //         setFormData(initialAddressFormData);
-    //         toast({
-    //           title: "Address added successfully",
-    //         });
-    //       }
-    //     });
+      return;
+    }
+
+    currentEditedId !== null
+      ? dispatch(
+          editAddress({
+            userId: user?.id,
+            addressId: currentEditedId,
+            formData,
+          })
+        ).then((data) => {
+          if (data?.payload?.success) {
+            dispatch(fetchAllAddresses(user?.id));
+            setCurrentEditedId(null);
+            setFormData(initialAddressFormData);
+            toast({
+              title: "Address updated successfully",
+            });
+          }
+        })
+      : dispatch(
+          addNewAddress({
+            ...formData,
+            userId: user?.id,
+          })
+        ).then((data) => {
+          if (data?.payload?.success) {
+            dispatch(fetchAllAddresses(user?.id));
+            setFormData(initialAddressFormData);
+            toast({
+              title: "Address added successfully",
+            });
+          }
+        });
   }
 
   function handleDeleteAddress(getCurrentAddress) {
@@ -98,17 +101,17 @@ function Address() {
     });
   }
 
-  //   function handleEditAddress(getCuurentAddress) {
-  //     setCurrentEditedId(getCuurentAddress?._id);
-  //     setFormData({
-  //       ...formData,
-  //       address: getCuurentAddress?.address,
-  //       city: getCuurentAddress?.city,
-  //       phone: getCuurentAddress?.phone,
-  //       pincode: getCuurentAddress?.pincode,
-  //       notes: getCuurentAddress?.notes,
-  //     });
-  //   }
+  function handleEditAddress(getCurrentAddress) {
+    setCurrentEditedId(getCurrentAddress?._id);
+    setFormData({
+      ...formData,
+      address: getCurrentAddress?.address,
+      city: getCurrentAddress?.city,
+      phone: getCurrentAddress?.phone,
+      zipCode: getCurrentAddress?.zipCode,
+      notes: getCurrentAddress?.notes,
+    });
+  }
 
   function isFormValid() {
     return Object.keys(formData)
@@ -129,11 +132,11 @@ function Address() {
         {addressList && addressList.length > 0
           ? addressList.map((singleAddressItem) => (
               <AddressCard
-                // selectedId={selectedId}
+                selectedId={selectedId}
                 handleDeleteAddress={handleDeleteAddress}
                 addressInfo={singleAddressItem}
-                // handleEditAddress={handleEditAddress}
-                // setCurrentSelectedAddress={setCurrentSelectedAddress}
+                handleEditAddress={handleEditAddress}
+                setCurrentSelectedAddress={setCurrentSelectedAddress}
               />
             ))
           : null}
@@ -146,8 +149,8 @@ function Address() {
           formControls={addressFormControls}
           formData={formData}
           setFormData={setFormData}
-          //   buttonText={currentEditedId !== null ? "Edit" : "Add"}
-          buttonText={"Add"}
+          buttonText={currentEditedId !== null ? "Edit" : "Add"}
+          //   buttonText={"Add"}
           onSubmit={handleManageAddress}
           isBtnDisabled={!isFormValid()}
         />

@@ -15,6 +15,8 @@ export const createNewOrder = createAsyncThunk(
       orderData
     );
 
+    console.log(response.data, "response.data");
+
     return response.data;
   }
 );
@@ -28,7 +30,7 @@ const shoppingOrderSlice = createSlice({
       .addCase(createNewOrder.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createNewOrder.fulfilled, (state) => {
+      .addCase(createNewOrder.fulfilled, (state, action) => {
         state.isLoading = false;
         state.approvalURL = action.payload.approvalURL;
         state.orderId = action.payload.orderId;

@@ -3,9 +3,11 @@ import img from "../../assets/account.jpg";
 import UserCartItemsContent from "@/components/shopping-view/cart-items-content";
 import { Button } from "@/components/ui/button";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createNewOrder } from "@/store/shop/order-slice";
-// import { useToast } from "@/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
+// import { Navigate } from "react-router-dom";
+// import { useToast } from "@/components/ui/use-toast";
 
 function ShoppingCheckout() {
   const { cartItems } = useSelector((state) => state.shopCart);
@@ -33,6 +35,23 @@ function ShoppingCheckout() {
   console.log(currentSelectedAddress, "currentSelectedAddress");
 
   function handleInitiatePaypalPayment() {
+    if (cartItems.length === 0) {
+      toast({
+        title: "Your cart is empty. Please add items to proceed",
+        variant: "destructive",
+      });
+
+      return;
+    }
+    if (currentSelectedAddress === null) {
+      toast({
+        title: "Please select one address to proceed.",
+        variant: "destructive",
+      });
+
+      return;
+    }
+
     const orderData = {
       userId: user?.id,
       cartId: cartItems?._id,
@@ -68,15 +87,31 @@ function ShoppingCheckout() {
       console.log(data, "jose");
       if (data?.payload?.success) {
         setIsPaymentStart(true);
+        console.log("setIsPaymentStart(true)");
       } else {
         setIsPaymentStart(false);
+        console.log("setIsPaymentStart(false)");
       }
     });
   }
 
-  if (approvalURL) {
-    window.location.href = approvalURL;
-  }
+  // if (approvalURL) {
+  //   console.log(approvalURL, "approvalURL");
+  //   window.location.href = approvalURL;
+  //   console.log(window.location.href, "window.location.href ");
+  // }
+
+  // if (response.data.success) {
+  //   window.location.href = response.data.approvalURL;
+  // }
+
+  useEffect(() => {
+    if (approvalURL) {
+      console.log(approvalURL, "approvalURL");
+      window.location.href = approvalURL; // Redirect
+      console.log(window.location.href, "window.location.href ");
+    }
+  }, [approvalURL]); // Only run when approvalURL changes
 
   return (
     <div className="flex flex-col">

@@ -95,23 +95,21 @@ function ShoppingCheckout() {
     });
   }
 
-  // if (approvalURL) {
-  //   console.log(approvalURL, "approvalURL");
-  //   window.location.href = approvalURL;
-  //   console.log(window.location.href, "window.location.href ");
-  // }
+  if (approvalURL) {
+    window.location.href = approvalURL;
+  }
 
   // if (response.data.success) {
   //   window.location.href = response.data.approvalURL;
   // }
 
-  useEffect(() => {
-    if (approvalURL) {
-      console.log(approvalURL, "approvalURL");
-      window.location.href = approvalURL; // Redirect
-      console.log(window.location.href, "window.location.href ");
-    }
-  }, [approvalURL]); // Only run when approvalURL changes
+  // useEffect(() => {
+  //   if (approvalURL) {
+  //     console.log(approvalURL, "approvalURL");
+  //     window.location.href = approvalURL; // Redirect
+  //     console.log(window.location.href, "window.location.href ");
+  //   }
+  // }, [approvalURL]); // Only run when approvalURL changes
 
   return (
     <div className="flex flex-col">

@@ -2,14 +2,18 @@ import Address from "@/components/shopping-view/address";
 import img from "../../assets/account.jpg";
 import UserCartItemsContent from "@/components/shopping-view/cart-items-content";
 import { Button } from "@/components/ui/button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { createNewOrder } from "@/store/shop/order-slice";
+// import { useToast } from "@/hooks/use-toast";
 
 function ShoppingCheckout() {
   const { cartItems } = useSelector((state) => state.shopCart);
   const { user } = useSelector((state) => state.auth);
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
-  const [isPaymentStart, setIsPaymemntStart] = useState(false);
+  const [isPaymentStart, setIsPaymentStart] = useState(false);
+  const dispatch = useDispatch();
+  // const { toast } = useToast();
 
   const totalCartAmount =
     cartItems && cartItems.items && cartItems.items.length > 0
@@ -59,7 +63,14 @@ function ShoppingCheckout() {
       payerId: "",
     };
 
-    console.log(orderData);
+    dispatch(createNewOrder(orderData)).then((data) => {
+      console.log(data, "jose");
+      // if (data?.payload?.success) {
+      //   setIsPaymentStart(true);
+      // } else {
+      //   setIsPaymentStart(false);
+      // }
+    });
   }
 
   return (

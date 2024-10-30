@@ -6,6 +6,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   cartItems: [],
   isLoading: false,
+  // totalAmount: 0,
 };
 
 export const addToCart = createAsyncThunk(
@@ -62,6 +63,13 @@ export const updateCartItemQuantity = createAsyncThunk(
   }
 );
 
+// function calculateTotal(cartItems) {
+//   return cartItems.reduce((total, item) => {
+//     const price = item.salePrice > 0 ? item.salePrice : item.price;
+//     return total + price * item.quantity;
+//   }, 0);
+// }
+
 const shoppingCartSlice = createSlice({
   name: "shoppingCart",
   initialState,
@@ -74,6 +82,7 @@ const shoppingCartSlice = createSlice({
       .addCase(addToCart.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cartItems = action.payload.data;
+        // state.totalAmount = calculateTotal(state.cartItems); // Update total
       })
       .addCase(addToCart.rejected, (state) => {
         state.isLoading = false;

@@ -45,7 +45,7 @@ function UserCartItemsContent({ cartItem }) {
   return (
     <div className="flex items-center space-x-4">
       <img
-        sr={cartItem?.image}
+        src={cartItem?.image}
         alt={cartItem?.title}
         className="w-20 h-20 rounded object-cover"
       />

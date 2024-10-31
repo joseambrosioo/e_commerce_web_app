@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { createNewOrder } from "@/store/shop/order-slice";
-import { toast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
 // import { Navigate } from "react-router-dom";
 // import { useToast } from "@/components/ui/use-toast";
 
@@ -16,7 +16,7 @@ function ShoppingCheckout() {
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
   const [isPaymentStart, setIsPaymentStart] = useState(false);
   const dispatch = useDispatch();
-  // const { toast } = useToast();
+  const { toast } = useToast();
 
   const totalCartAmount =
     cartItems && cartItems.items && cartItems.items.length > 0

@@ -10,7 +10,8 @@ import {
   getOrderDetailsForAdmin,
   updateOrderStatus,
 } from "@/store/admin/order-slice";
-import { useToast } from "../ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
+// import { useToast } from "../ui/use-toast";
 
 const initialFormData = {
   status: "",
@@ -26,6 +27,8 @@ function AdminOrderDetailsView({ orderDetails }) {
 
   function handleUpdateStatus(event) {
     event.preventDefault();
+    console.log(formData, "formData");
+
     const { status } = formData;
 
     dispatch(
@@ -70,7 +73,7 @@ function AdminOrderDetailsView({ orderDetails }) {
             <p className="font-medium">Order Status</p>
             <Label>
               <Badge
-                className={`py-1 px-3 ${
+                className={`py-1 px-3 text-white ${
                   orderDetails?.orderStatus === "confirmed"
                     ? "bg-green-500"
                     : orderDetails?.orderStatus === "rejected"

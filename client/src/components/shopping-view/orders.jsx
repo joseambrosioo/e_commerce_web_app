@@ -39,6 +39,7 @@ function ShoppingOrders() {
   }, [orderDetails]);
 
   console.log(orderDetails, "orderDetails");
+  console.log(orderList, "orderList");
 
   return (
     <Card>
@@ -66,7 +67,7 @@ function ShoppingOrders() {
                     <TableCell>{orderItem?.orderDate.split("T")[0]}</TableCell>
                     <TableCell>
                       <Badge
-                        className={`py-1 px-3 ${
+                        className={`py-1 px-3 text-white ${
                           orderItem?.orderStatus === "confirmed"
                             ? "bg-green-500"
                             : orderItem?.orderStatus === "rejected"

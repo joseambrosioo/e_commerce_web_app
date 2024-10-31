@@ -122,10 +122,10 @@ function Address({ setCurrentSelectedAddress }) {
 
   useEffect(() => {
     dispatch(fetchAllAddresses(user?.id));
-    console.log(addressList);
+    // console.log(addressList);
   }, [dispatch]);
 
-  console.log(addressList, "addressList");
+  // console.log(addressList, "addressList");
 
   return (
     <Card>

@@ -33,7 +33,7 @@ function createSearchParamsHelper(filterParams) {
     }
   }
 
-  console.log(queryParams, "");
+  // console.log(queryParams, "");
 
   return queryParams.join("&");
 }
@@ -50,13 +50,15 @@ function ShoppingListing() {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   const { toast } = useToast();
 
+  const categorySearchParam = searchParams.get("category");
+
   function handleSort(value) {
-    console.log(value);
+    // console.log(value);
     setSort(value);
   }
 
   function handleFilter(getSectionId, getCurrentOption) {
-    console.log(getSectionId, getCurrentOption);
+    // console.log(getSectionId, getCurrentOption);
 
     let cpyFilters = { ...filters };
     const indexOfCurrentSection = Object.keys(cpyFilters).indexOf(getSectionId);
@@ -74,18 +76,18 @@ function ShoppingListing() {
         cpyFilters[getSectionId].push(getCurrentOption);
       else cpyFilters[getSectionId].splice(indexOfCurrentOption, 1);
     }
-    console.log(cpyFilters);
+    // console.log(cpyFilters);
     setFilters(cpyFilters);
     sessionStorage.setItem("filters", JSON.stringify(cpyFilters));
   }
 
   function handleGetProductDetails(getCurrentProductId) {
-    console.log(getCurrentProductId);
+    // console.log(getCurrentProductId);
     dispatch(fetchProductDetails(getCurrentProductId));
   }
 
   function handleAddToCart(getCurrentProductId) {
-    console.log(getCurrentProductId);
+    // console.log(getCurrentProductId);
     dispatch(
       addToCart({
         userId: user?.id,
@@ -95,37 +97,79 @@ function ShoppingListing() {
     ).then((data) => {
       if (data?.payload?.success) dispatch(fetchCartItems(user?.id));
       toast({ title: "Product is added to cart." });
+      // else {
+      //   toast({ title: "Failed to add product to cart.", variant: "destructive" });
+      // }
     });
   }
 
-  useEffect(() => {
-    setSort("price-lowtohigh");
-    setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
-  }, []);
+  // useEffect(() => {
+  //   setSort("price-lowtohigh");
+  //   setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
+  // }, [[categorySearchParam]]);
+  // // }, [[]]);
+
+  // useEffect(() => {
+  //   if (filters && Object.keys(filters).length > 0) {
+  //     const createQueryString = createSearchParamsHelper(filters);
+  //     setSearchParams(new URLSearchParams(createQueryString));
+  //   }
+  // }, [filters]);
+
+  // // fetch list of products
+  // useEffect(() => {
+  //   if (filters !== null && sort !== null)
+  //     dispatch(
+  //       fetchAllFilteredProducts({ filterParams: filters, sortParams: sort })
+  //     );
+  // }, [dispatch, sort, filters]);
+  // // }, [sort, filters]);
+
+  // useEffect(() => {
+  //   if (productDetails !== null) setOpenDetailsDialog(true);
+  // }, [productDetails]);
+
+  // console.log(productList, "productList");
+  // //   console.log(filters, searchParams.toString(), "filters");
+  // console.log(productDetails, "productDetails");
+  // console.log(cartItems, "cartItems");
 
   useEffect(() => {
+    // Retrieve saved filters from session storage or initialize with an empty object
+    const savedFilters = JSON.parse(sessionStorage.getItem("filters")) || {};
+
+    // Set category from categorySearchParam only if no saved filters are present
+    if (Object.keys(savedFilters).length === 0 && categorySearchParam) {
+      savedFilters.category = [categorySearchParam];
+    }
+
+    // Set initial sort order and filters, and save filters to session storage for consistency
+    setSort("price-lowtohigh");
+    setFilters(savedFilters);
+    sessionStorage.setItem("filters", JSON.stringify(savedFilters));
+  }, []); // Runs only once on component mount
+
+  useEffect(() => {
+    // Update URL search parameters if filters are defined and have values
     if (filters && Object.keys(filters).length > 0) {
       const createQueryString = createSearchParamsHelper(filters);
       setSearchParams(new URLSearchParams(createQueryString));
     }
   }, [filters]);
 
-  // fetch list of products
+  // Fetch the list of products when filters or sort criteria change
   useEffect(() => {
-    if (filters !== null && sort !== null)
+    if (filters !== null && sort !== null) {
       dispatch(
         fetchAllFilteredProducts({ filterParams: filters, sortParams: sort })
       );
+    }
   }, [dispatch, sort, filters]);
 
+  // Open details dialog when productDetails changes
   useEffect(() => {
     if (productDetails !== null) setOpenDetailsDialog(true);
   }, [productDetails]);
-
-  // console.log(productList, "productList");
-  // //   console.log(filters, searchParams.toString(), "filters");
-  // console.log(productDetails, "productDetails");
-  // console.log(cartItems, "cartItems");
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">

@@ -31,8 +31,8 @@ function ShoppingCheckout() {
         )
       : 0;
 
-  console.log(cartItems, "cartItems");
-  console.log(currentSelectedAddress, "currentSelectedAddress");
+  // console.log(cartItems, "cartItems");
+  // console.log(currentSelectedAddress, "currentSelectedAddress");
 
   function handleInitiatePaypalPayment() {
     if (cartItems.length === 0) {

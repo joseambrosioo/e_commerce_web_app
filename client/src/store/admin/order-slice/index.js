@@ -13,7 +13,7 @@ export const getAllOrdersForAdmin = createAsyncThunk(
       `http://localhost:5000/api/admin/orders/get`
     );
 
-    console.log(response.data, "response.data");
+    // console.log(response.data, "response.data");
 
     return response.data;
   }
@@ -49,7 +49,7 @@ const adminOrderSlice = createSlice({
   initialState,
   reducers: {
     resetOrderDetails: (state) => {
-      console.log("resetOrderDetails");
+      //   console.log("resetOrderDetails");
 
       state.orderDetails = null;
     },

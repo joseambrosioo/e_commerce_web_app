@@ -40,7 +40,7 @@ function App() {
 
   if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
 
-  console.log(isLoading, user);
+  // console.log(isLoading, user);
 
   // const isAuthenticated = true;
   // const user = {

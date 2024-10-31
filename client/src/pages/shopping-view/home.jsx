@@ -117,7 +117,7 @@ function ShoppingHome() {
     );
   }, [dispatch]);
 
-  console.log(productList, "productList");
+  // console.log(productList, "productList");
 
   return (
     <div className="flex flex-col min-h-screen">

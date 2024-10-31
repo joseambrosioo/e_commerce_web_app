@@ -32,16 +32,16 @@ function AdminOrdersView() {
     dispatch(getAllOrdersForAdmin());
   }, [dispatch]);
 
-  console.log(orderDetails, "orderDetails");
+  // console.log(orderDetails, "orderDetails");
 
   useEffect(() => {
     if (orderDetails !== null) setOpenDetailsDialog(true);
   }, [orderDetails]);
 
-  console.log(orderDetails, "orderDetails");
+  // console.log(orderDetails, "orderDetails");
 
   useEffect(() => {
-    console.log("Order list after fetch:", orderList);
+    // console.log("Order list after fetch:", orderList);
   }, [orderList]);
 
   // console.log(orderList, "orderList");

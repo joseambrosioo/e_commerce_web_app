@@ -85,85 +85,104 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
             </div>
             <span className="text-muted-foreground">(4.5)</span>
           </div>
-          <div className="mt-5 mb-5">
+          {/* <div className="mt-5 mb-5">
             <Button
               className="w-full"
               onClick={() => handleAddToCart(productDetails?._id)}
             >
               Add to Cart
-            </Button>
-            <Separator />
-            <div className="max-h-[300px] overflow-auto">
-              <h2 className="text-xl font-bold mb-4">Reviews</h2>
-              <div className="grid gap-6">
-                <div className="flex gap-4">
-                  <Avatar className="w-10 h-10 border">
-                    <AvatarFallback>JA</AvatarFallback>
-                  </Avatar>
-                  <div className="grid gap-1">
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-bold">Jose Ambrosio</h3>
-                    </div>
-                    <div className="flex items-center gap-0.5">
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                    </div>
-                    <p className="text-muted-foreground">
-                      This is an amazing product!
-                    </p>
+            </Button> */}
+          <div className="mt-5 mb-5">
+            {productDetails?.totalStock === 0 ? (
+              <Button className="w-full opacity-60 cursor-not-allowed">
+                Out of Stock
+              </Button>
+            ) : (
+              <Button
+                className="w-full"
+                onClick={() =>
+                  handleAddToCart(
+                    productDetails?._id,
+                    productDetails?.totalStock
+                  )
+                }
+              >
+                Add to Cart
+              </Button>
+            )}
+          </div>
+          <Separator />
+          <div className="max-h-[300px] overflow-auto">
+            <h2 className="text-xl font-bold mb-4">Reviews</h2>
+            <div className="grid gap-6">
+              <div className="flex gap-4">
+                <Avatar className="w-10 h-10 border">
+                  <AvatarFallback>JA</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-bold">Jose Ambrosio</h3>
                   </div>
-                </div>
-                <div className="flex gap-4">
-                  <Avatar className="w-10 h-10 border">
-                    <AvatarFallback>JA</AvatarFallback>
-                  </Avatar>
-                  <div className="grid gap-1">
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-bold">Jose Ambrosio</h3>
-                    </div>
-                    <div className="flex items-center gap-0.5">
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                    </div>
-                    <p className="text-muted-foreground">
-                      This is an amazing product!
-                    </p>
+                  <div className="flex items-center gap-0.5">
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
                   </div>
-                </div>
-                <div className="flex gap-4">
-                  <Avatar className="w-10 h-10 border">
-                    <AvatarFallback>JA</AvatarFallback>
-                  </Avatar>
-                  <div className="grid gap-1">
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-bold">Jose Ambrosio</h3>
-                    </div>
-                    <div className="flex items-center gap-0.5">
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                      <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
-                    </div>
-                    <p className="text-muted-foreground">
-                      This is an amazing product!
-                    </p>
-                  </div>
+                  <p className="text-muted-foreground">
+                    This is an amazing product!
+                  </p>
                 </div>
               </div>
-              <div className="mt-6 flex gap-2">
-                <Input placeholder="Write a review..." />
-                <Button>Submit</Button>
+              <div className="flex gap-4">
+                <Avatar className="w-10 h-10 border">
+                  <AvatarFallback>JA</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-bold">Jose Ambrosio</h3>
+                  </div>
+                  <div className="flex items-center gap-0.5">
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                  </div>
+                  <p className="text-muted-foreground">
+                    This is an amazing product!
+                  </p>
+                </div>
               </div>
+              <div className="flex gap-4">
+                <Avatar className="w-10 h-10 border">
+                  <AvatarFallback>JA</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-bold">Jose Ambrosio</h3>
+                  </div>
+                  <div className="flex items-center gap-0.5">
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                    <StarIcon className="w-5 h-5 fill-primary"></StarIcon>
+                  </div>
+                  <p className="text-muted-foreground">
+                    This is an amazing product!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="mt-6 flex gap-2">
+              <Input placeholder="Write a review..." />
+              <Button>Submit</Button>
             </div>
           </div>
         </div>
+        {/* </div> */}
       </DialogContent>
     </Dialog>
   );

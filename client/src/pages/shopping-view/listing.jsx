@@ -43,6 +43,7 @@ function ShoppingListing() {
   const { productList, productDetails } = useSelector(
     (state) => state.shopProducts
   );
+  const { cartItems } = useSelector((state) => state.shopCart);
   const { user } = useSelector((state) => state.auth);
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
@@ -86,22 +87,75 @@ function ShoppingListing() {
     dispatch(fetchProductDetails(getCurrentProductId));
   }
 
-  function handleAddToCart(getCurrentProductId) {
-    // console.log(getCurrentProductId);
-    dispatch(
-      addToCart({
-        userId: user?.id,
-        productId: getCurrentProductId,
-        quantity: 1,
-      })
-    ).then((data) => {
-      if (data?.payload?.success) dispatch(fetchCartItems(user?.id));
-      toast({ title: "Product is added to cart." });
-      // else {
-      //   toast({ title: "Failed to add product to cart.", variant: "destructive" });
-      // }
-    });
+  function handleAddToCart(getCurrentProductId, getTotalStock) {
+    console.log("Cart Items:", cartItems);
+    let getCartItems = cartItems.items || [];
+
+    let shouldAddToCart = true; // Flag to control whether to add item to cart
+
+    console.log(getCartItems.length);
+
+    // Check if the current product already exists in the cart
+    if (getCartItems.length) {
+      const indexOfCurrentItem = getCartItems.findIndex(
+        (item) => item.productId === getCurrentProductId
+      );
+      console.log("Index of Current Item:", indexOfCurrentItem);
+
+      if (indexOfCurrentItem > -1) {
+        const getQuantity = getCartItems[indexOfCurrentItem].quantity;
+        console.log(
+          "Current Quantity in Cart:",
+          getQuantity,
+          "Total Stock:",
+          getTotalStock
+        );
+
+        if (getQuantity + 1 > getTotalStock) {
+          toast({
+            title: `Only ${getTotalStock} items can be added for this product.`,
+            variant: "destructive",
+          });
+          shouldAddToCart = false;
+        }
+      }
+    } else {
+      console.log("Product not found in cart, adding to cart.");
+    }
+
+    // If validation passes, proceed with adding to cart
+    if (shouldAddToCart) {
+      dispatch(
+        addToCart({
+          userId: user?.id,
+          productId: getCurrentProductId,
+          quantity: 1,
+        })
+      ).then((data) => {
+        if (data?.payload?.success) {
+          dispatch(fetchCartItems(user?.id));
+          toast({ title: "Product is added to cart." });
+        }
+      });
+    }
   }
+
+  // function handleAddToCart(getCurrentProductId) {
+  //   // console.log(getCurrentProductId);
+  //   dispatch(
+  //     addToCart({
+  //       userId: user?.id,
+  //       productId: getCurrentProductId,
+  //       quantity: 1,
+  //     })
+  //   ).then((data) => {
+  //     if (data?.payload?.success) dispatch(fetchCartItems(user?.id));
+  //     toast({ title: "Product is added to cart." });
+  //     // else {
+  //     //   toast({ title: "Failed to add product to cart.", variant: "destructive" });
+  //     // }
+  //   });
+  // }
 
   // useEffect(() => {
   //   setSort("price-lowtohigh");
@@ -228,5 +282,6 @@ function ShoppingListing() {
     </div>
   );
 }
+// }
 
 export default ShoppingListing;

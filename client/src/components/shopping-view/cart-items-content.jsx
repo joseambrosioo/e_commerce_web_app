@@ -9,19 +9,69 @@ import { useToast } from "@/hooks/use-toast";
 
 function UserCartItemsContent({ cartItem }) {
   const { user } = useSelector((state) => state.auth);
-
+  const { cartItems } = useSelector((state) => state.shopCart);
+  const { productList } = useSelector((state) => state.shopProducts);
   const dispatch = useDispatch();
   const { toast } = useToast();
 
+  // function handleUpdateCartItemQuantity(getCartItem, typeOfAction) {
+  //   dispatch(
+  //     updateCartItemQuantity({
+  //       userId: user?.id,
+  //       productId: getCartItem?.productId,
+  //       quantity:
+  //         typeOfAction === "plus"
+  //           ? getCartItem?.quantity + 1
+  //           : getCartItem?.quantity - 1,
+  //     })
+  //   ).then((data) => {
+  //     if (data?.payload?.success) {
+  //       toast({ title: "Cart item is updated successfully." });
+  //     }
+  //   });
+  // }
+
   function handleUpdateCartItemQuantity(getCartItem, typeOfAction) {
+    let getCartItems = cartItems.items || [];
+    const indexOfCurrentCartItem = getCartItems.findIndex(
+      (item) => item.productId === getCartItem?.productId
+    );
+
+    if (indexOfCurrentCartItem === -1) return;
+
+    const getQuantity = getCartItems[indexOfCurrentCartItem].quantity;
+
+    // Handle the 'plus' action and check stock limit
+    if (typeOfAction === "plus") {
+      const getCurrentProductIndex = productList.findIndex(
+        (product) => product._id === getCartItem?.productId
+      );
+      const getTotalStock = productList[getCurrentProductIndex].totalStock;
+
+      if (getQuantity + 1 > getTotalStock) {
+        toast({
+          title: `Only ${getTotalStock} items can be added for this product.`,
+          variant: "destructive",
+        });
+        return;
+      }
+    }
+
+    // Handle the 'minus' action and check minimum quantity
+    if (typeOfAction === "minus" && getQuantity <= 1) {
+      toast({
+        title: "Quantity cannot be less than 1.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // If validation passes, update the cart item quantity
     dispatch(
       updateCartItemQuantity({
         userId: user?.id,
         productId: getCartItem?.productId,
-        quantity:
-          typeOfAction === "plus"
-            ? getCartItem?.quantity + 1
-            : getCartItem?.quantity - 1,
+        quantity: typeOfAction === "plus" ? getQuantity + 1 : getQuantity - 1,
       })
     ).then((data) => {
       if (data?.payload?.success) {

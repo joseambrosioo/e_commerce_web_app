@@ -31,6 +31,65 @@ function UserCartItemsContent({ cartItem }) {
   //   });
   // }
 
+  // function handleUpdateCartItemQuantity(getCartItem, typeOfAction) {
+  //   let getCartItems = cartItems.items || [];
+  //   const indexOfCurrentCartItem = getCartItems.findIndex(
+  //     (item) => item.productId === getCartItem?.productId
+  //   );
+
+  //   if (indexOfCurrentCartItem === -1) return;
+
+  //   const getQuantity = getCartItems[indexOfCurrentCartItem].quantity;
+
+  //   // Handle the 'plus' action and check stock limit
+  //   if (typeOfAction === "plus") {
+  //     const getCurrentProductIndex = productList.findIndex(
+  //       (product) => product._id === getCartItem?.productId
+  //     );
+
+  //     // Check if product is found
+  //     if (getCurrentProductIndex === -1) {
+  //       toast({
+  //         title: "Product not found.",
+  //         variant: "destructive",
+  //       });
+  //       return;
+  //     }
+
+  //     const getTotalStock = productList[getCurrentProductIndex].totalStock;
+
+  //     if (getQuantity + 1 > getTotalStock) {
+  //       toast({
+  //         title: `Only ${getTotalStock} items can be added for this product.`,
+  //         variant: "destructive",
+  //       });
+  //       return;
+  //     }
+  //   }
+
+  //   // Handle the 'minus' action and check minimum quantity
+  //   if (typeOfAction === "minus" && getQuantity <= 1) {
+  //     toast({
+  //       title: "Quantity cannot be less than 1.",
+  //       variant: "destructive",
+  //     });
+  //     return;
+  //   }
+
+  //   // If validation passes, update the cart item quantity
+  //   dispatch(
+  //     updateCartItemQuantity({
+  //       userId: user?.id,
+  //       productId: getCartItem?.productId,
+  //       quantity: typeOfAction === "plus" ? getQuantity + 1 : getQuantity - 1,
+  //     })
+  //   ).then((data) => {
+  //     if (data?.payload?.success) {
+  //       toast({ title: "Cart item is updated successfully." });
+  //     }
+  //   });
+  // }
+
   function handleUpdateCartItemQuantity(getCartItem, typeOfAction) {
     let getCartItems = cartItems.items || [];
     const indexOfCurrentCartItem = getCartItems.findIndex(
@@ -46,6 +105,20 @@ function UserCartItemsContent({ cartItem }) {
       const getCurrentProductIndex = productList.findIndex(
         (product) => product._id === getCartItem?.productId
       );
+
+      console.log("Checking product ID:", getCartItem?.productId);
+      console.log("Product List:", productList);
+      console.log("Found product index:", getCurrentProductIndex);
+
+      // Check if product is found
+      if (getCurrentProductIndex === -1) {
+        toast({
+          title: "Product not found.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const getTotalStock = productList[getCurrentProductIndex].totalStock;
 
       if (getQuantity + 1 > getTotalStock) {

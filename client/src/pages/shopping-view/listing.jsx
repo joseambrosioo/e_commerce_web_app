@@ -222,7 +222,10 @@ function ShoppingListing() {
 
   // Open details dialog when productDetails changes
   useEffect(() => {
-    if (productDetails !== null) setOpenDetailsDialog(true);
+    if (productDetails !== null) {
+      console.log("Dialog should open with:", productDetails);
+      setOpenDetailsDialog(true);
+    }
   }, [productDetails]);
 
   return (

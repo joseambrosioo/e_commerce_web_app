@@ -1,17 +1,19 @@
-import { Dialog, DialogTitle, DialogContent } from "@radix-ui/react-dialog";
+import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Button } from "../ui/button";
-import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
-import { Separator } from "@radix-ui/react-dropdown-menu";
+import { Avatar, AvatarFallback } from "../ui/avatar";
+import { Separator } from "../ui/separator";
 import { StarIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { useToast } from "@/hooks/use-toast";
 import { setProductDetails } from "@/store/shop/products-slice";
-import { Label } from "@radix-ui/react-label";
+import { Label } from "../ui/label";
+
 import { useEffect, useState } from "react";
 import StarRatingComponent from "../common/star-rating";
+import { addReview, getReviews } from "@/store/shop/review-slice";
 
 function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const [reviewMsg, setReviewMsg] = useState("");
@@ -21,6 +23,8 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const { toast } = useToast();
   const { cartItems } = useSelector((state) => state.shopCart);
   const { reviews } = useSelector((state) => state.shopReview);
+
+  console.log("Rendering ProductDetailsDialog with:");
 
   function handleRatingChange(getRating) {
     console.log(getRating, "getRating");
@@ -140,7 +144,8 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
       <DialogContent
         // aria-describedby="product-description"
         aria-describedby={undefined}
-        className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]"
+        // className="grid grid-cols-2 bg-white text-black gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]"
+        className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full"
       >
         {/* <VisuallyHidden> */}
         <DialogTitle>{productDetails?.title}</DialogTitle>
@@ -156,6 +161,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
         </div>
         {/* <div className="grid gap-6"> */}
         <div className="grid">
+          {/* <div className=""> */}
           <div>
             <h1 className="text-3xl font-extrabold">{productDetails?.title}</h1>
             <p className="text-muted-foreground text-2xl mb-5 mt-4">
@@ -164,7 +170,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
           </div>
           <div className="flex items-center justify-between">
             <p
-              className={`text 3xl font-bold text-primary ${
+              className={`text-3xl font-bold text-primary ${
                 productDetails?.salePrice > 0 ? "line-through" : ""
               }`}
             >

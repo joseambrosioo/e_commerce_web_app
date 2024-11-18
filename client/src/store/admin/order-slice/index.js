@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
   orderList: [],
   orderDetails: null,
+  isLoading: false,
 };
 
 export const getAllOrdersForAdmin = createAsyncThunk(
@@ -12,9 +13,6 @@ export const getAllOrdersForAdmin = createAsyncThunk(
     const response = await axios.get(
       `http://localhost:5000/api/admin/orders/get`
     );
-
-    // console.log(response.data, "response.data");
-
     return response.data;
   }
 );
@@ -25,7 +23,8 @@ export const getOrderDetailsForAdmin = createAsyncThunk(
     const response = await axios.get(
       `http://localhost:5000/api/admin/orders/details/${id}`
     );
-
+    // return response.data;
+    console.log(response, "API response");
     return response.data;
   }
 );
@@ -35,11 +34,8 @@ export const updateOrderStatus = createAsyncThunk(
   async ({ id, orderStatus }) => {
     const response = await axios.put(
       `http://localhost:5000/api/admin/orders/update/${id}`,
-      {
-        orderStatus,
-      }
+      { orderStatus }
     );
-
     return response.data;
   }
 );
@@ -49,8 +45,6 @@ const adminOrderSlice = createSlice({
   initialState,
   reducers: {
     resetOrderDetails: (state) => {
-      //   console.log("resetOrderDetails");
-
       state.orderDetails = null;
     },
   },
@@ -60,9 +54,9 @@ const adminOrderSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAllOrdersForAdmin.fulfilled, (state, action) => {
+        console.log(action.payload, "Fetched orders data");
         state.isLoading = false;
-        state.orderList = action.payload.data;
-        // state.orderList = action.payload;
+        state.orderList = action.payload.data || [];
       })
       .addCase(getAllOrdersForAdmin.rejected, (state) => {
         state.isLoading = false;
@@ -74,7 +68,7 @@ const adminOrderSlice = createSlice({
       .addCase(getOrderDetailsForAdmin.fulfilled, (state, action) => {
         state.isLoading = false;
         state.orderDetails = action.payload.data;
-        // state.orderDetails = action.payload; // Directly assign payload here
+        // state.orderDetails = action.payload; // Payload here
       })
       .addCase(getOrderDetailsForAdmin.rejected, (state) => {
         state.isLoading = false;

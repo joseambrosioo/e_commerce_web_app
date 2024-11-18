@@ -23,11 +23,11 @@ function AdminOrderDetailsView({ orderDetails }) {
   const dispatch = useDispatch();
   const { toast } = useToast();
 
-  // console.log(orderDetails, "orderDetailsorderDetails");
+  console.log(orderDetails, "orderDetailsorderDetails");
 
   function handleUpdateStatus(event) {
     event.preventDefault();
-    // console.log(formData, "formData");
+    console.log(formData, "formData");
 
     const { status } = formData;
 

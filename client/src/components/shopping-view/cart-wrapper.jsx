@@ -21,7 +21,11 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
       : 0;
 
   return (
-    <SheetContent className="sm:max-2-md">
+    // <SheetContent className="sm:max-2-md">
+    <SheetContent
+      side="right"
+      className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full"
+    >
       <SheetHeader>
         <SheetTitle>Your Cart</SheetTitle>
       </SheetHeader>

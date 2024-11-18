@@ -46,7 +46,8 @@ function AdminOrderDetailsView({ orderDetails }) {
   }
 
   return (
-    <DialogContent className="sm:max-w-[600px]">
+    // <DialogContent className=" bg-white text-black sm:max-w-[600px]">
+    <DialogContent className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full">
       <div className="grid gap-6">
         <div className="grid gap-2">
           <div className="flex mt-6 items-center justify-between">

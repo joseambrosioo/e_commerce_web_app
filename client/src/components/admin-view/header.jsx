@@ -5,15 +5,20 @@ import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+// AdminHeader component serves as the header for the admin dashboard.
+// It provides functionality for toggling the sidebar menu and logging out the user.
 function AdminHeader({ setOpen }) {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
+  // Function to handle the logout process.
+  // Dispatches the `logoutUser` action to clear user session data in the Redux store.
   function handleLogout() {
     dispatch(logoutUser());
   }
 
+  // Returns the JSX structure for the header, including the toggle menu button and logout button.
   return (
     <header className="flex items-cent justify-between px-4 py-3 bg-backgraound border-b">
       <Button onClick={() => setOpen(true)} className="lg:hidden sm:block">
@@ -33,4 +38,5 @@ function AdminHeader({ setOpen }) {
   );
 }
 
+// Exporting the AdminHeader component to make it available for import in other files.
 export default AdminHeader;

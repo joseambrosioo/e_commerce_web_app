@@ -19,6 +19,10 @@ import {
 } from "@/store/admin/order-slice";
 import { Badge } from "../ui/badge";
 
+// Component for displaying and managing admin orders.
+// Fetches the list of all orders for an admin.
+// Allows the admin to view detailed information about a specific order.
+// Uses a dialog to show order details fetched dynamically.
 function AdminOrdersView() {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   const { orderList, orderDetails } = useSelector((state) => state.adminOrder);
@@ -26,16 +30,19 @@ function AdminOrdersView() {
 
   console.log(orderList, "orderList on components admin-view");
 
+  // Function to fetch details of a specific order
   function handleFetchOrderDetails(getId) {
     dispatch(getOrderDetailsForAdmin(getId));
   }
 
+  // Fetch all orders when the component is mounted
   useEffect(() => {
     dispatch(getAllOrdersForAdmin());
   }, [dispatch]);
 
   console.log(orderDetails, "orderDetails");
 
+  // Open the dialog when order details are available
   useEffect(() => {
     if (orderDetails !== null) setOpenDetailsDialog(true);
   }, [orderDetails]);
@@ -115,4 +122,5 @@ function AdminOrdersView() {
   );
 }
 
+// Exports the component for use in admin-related views.
 export default AdminOrdersView;

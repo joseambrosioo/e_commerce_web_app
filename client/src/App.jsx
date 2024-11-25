@@ -41,14 +41,6 @@ function App() {
 
   if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
 
-  // console.log(isLoading, user);
-
-  // const isAuthenticated = true;
-  // const user = {
-  //   name: "Jose",
-  //   role: "user",
-  // };
-
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       {/* <h1>Header component</h1> */}

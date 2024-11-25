@@ -1,21 +1,25 @@
 import {
   Airplay,
+  Armchair,
   BabyIcon,
+  BedDouble,
+  Cable,
   ChevronLeftIcon,
   ChevronRightIcon,
   CloudLightning,
+  Footprints,
   Heater,
   Images,
   Shirt,
   ShirtIcon,
   ShoppingBasket,
+  Smartphone,
+  Sofa,
+  Tv,
   UmbrellaIcon,
   WashingMachine,
   WatchIcon,
 } from "lucide-react";
-// import bannerOne from "../../assets/banner-1.webp";
-// import bannerTwo from "../../assets/banner-2.webp";
-// import bannerThree from "../../assets/banner-3.webp";
 import bannerOne from "../../assets/banner-1.jpg";
 import bannerTwo from "../../assets/banner-2.jpg";
 import bannerThree from "../../assets/banner-3.jpg";
@@ -34,29 +38,18 @@ import { useToast } from "@/hooks/use-toast";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 
 const categoriesWithIcon = [
-  { id: "men", label: "Men", icon: ShirtIcon },
-  { id: "women", label: "Women", icon: ShirtIcon },
-  { id: "kids", label: "Kids", icon: ShirtIcon },
-  // { id: "men", label: "Men", icon: ShirtIcon },
-  // { id: "women", label: "Women", icon: CloudLightning },
-  // { id: "kids", label: "Kids", icon: BabyIcon },
-  // { id: "accessories", label: "Accessories", icon: WatchIcon },
-  // { id: "footwear", label: "Footwear", icon: UmbrellaIcon },
+  { id: "electronics", label: "Electronics", icon: Cable },
+  { id: "clothes", label: "Clothes", icon: ShirtIcon },
+  { id: "furniture", label: "Furniture", icon: Armchair },
 ];
 
 const brandsWithIcon = [
-  { id: "nike", label: "Nike", icon: Shirt },
-  { id: "adidas", label: "Adidas", icon: Shirt },
-  { id: "puma", label: "Puma", icon: Shirt },
-  { id: "levi", label: "Levi's", icon: Shirt },
-  { id: "zara", label: "Zara", icon: Shirt },
-  { id: "h&m", label: "H&M", icon: Shirt },
-  // { id: "nike", label: "Nike", icon: Shirt },
-  // { id: "adidas", label: "Adidas", icon: WashingMachine },
-  // { id: "puma", label: "Puma", icon: ShoppingBasket },
-  // { id: "levi", label: "Levi's", icon: Airplay },
-  // { id: "zara", label: "Zara", icon: Images },
-  // { id: "h&m", label: "H&M", icon: Heater },
+  { id: "samsung", label: "Samsung", icon: Smartphone },
+  { id: "lg", label: "LG", icon: Tv },
+  { id: "adidas", label: "Adidas", icon: Footprints },
+  { id: "levi", label: "Levi", icon: Shirt },
+  { id: "ikea", label: "IKEA", icon: Sofa },
+  { id: "wayfair", label: "Wayfair", icon: BedDouble },
 ];
 
 function ShoppingHome() {

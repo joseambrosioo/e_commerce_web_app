@@ -3,6 +3,9 @@ import { Card, CardContent, CardFooter } from "../ui/card";
 // const { default: AdminLayout } = require("./layout");
 // import AdminLayout from "./layout";  // Import layout as default
 
+// Component for rendering a product tile in the admin interface.
+// Displays product details such as image, title, price, and sale price.
+// Provides options to edit or delete the product.
 function AdminProductTile({
   product,
   setFormData,
@@ -58,5 +61,6 @@ function AdminProductTile({
   );
 }
 
+// Exports the component for use in admin-related views.
 // module.exports = AdminProductTile
 export default AdminProductTile;

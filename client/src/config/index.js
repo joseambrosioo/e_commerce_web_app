@@ -60,11 +60,9 @@ export const addProductFormElements = [
     componentType: "select",
     placeholder: "Select a category",
     options: [
-      { id: "men", label: "Men" },
-      { id: "women", label: "Women" },
-      { id: "kids", label: "Kids" },
-      { id: "accessories", label: "Accessories" },
-      { id: "footwear", label: "Footwear" },
+      { id: "electronics", label: "Electronics" },
+      { id: "clothes", label: "Clothes" },
+      { id: "furniture", label: "Furniture" },
     ],
   },
   {
@@ -73,12 +71,12 @@ export const addProductFormElements = [
     componentType: "select",
     placeholder: "Select a brand",
     options: [
-      { id: "nike", label: "Nike" },
+      { id: "samsung", label: "Samsung" },
+      { id: "lg", label: "LG" },
       { id: "adidas", label: "Adidas" },
-      { id: "puma", label: "Puma" },
       { id: "levi", label: "Levi" },
-      { id: "zara", label: "Zara" },
-      { id: "h&m", label: "H&M" },
+      { id: "ikea", label: "IKEA" },
+      { id: "wayfair", label: "Wayfair" },
     ],
   },
   {
@@ -116,30 +114,20 @@ export const shoppingViewHeaderMenuItems = [
     path: "/shop/listing",
   },
   {
-    id: "men",
-    label: "Men",
+    id: "electronics",
+    label: "Electronics",
     path: "/shop/listing",
   },
   {
-    id: "women",
-    label: "Women",
+    id: "clothes",
+    label: "Clothes",
     path: "/shop/listing",
   },
   {
-    id: "kids",
-    label: "Kids",
+    id: "furniture",
+    label: "Furniture",
     path: "/shop/listing",
   },
-  // {
-  //     id: 'watch',
-  //     label: 'Watch',
-  //     path: '/shop/listing'
-  // },
-  // {
-  //     id: 'accessories',
-  //     label: 'Accessories',
-  //     path: '/shop/listing'
-  // },
   {
     id: "search",
     label: "Search",
@@ -148,37 +136,33 @@ export const shoppingViewHeaderMenuItems = [
 ];
 
 export const categoryOptionsMap = {
-  men: "Men",
-  women: "Women",
-  kids: "Kids",
-  accessories: "Accessories",
-  footwear: "Footwear",
+  electronics: "Electronics",
+  clothes: "Clothes",
+  furniture: "Furniture",
 };
 
 export const brandOptionsMap = {
-  nike: "Nike",
+  samsung: "Samsung",
+  lg: "LG",
   adidas: "Adidas",
-  puma: "Puma",
   levi: "Levi",
-  zara: "Zara",
-  "h&m": "H&M",
+  ikea: "IKEA",
+  wayfair: "Wayfair",
 };
 
 export const filterOptions = {
   category: [
-    { id: "men", label: "Men" },
-    { id: "women", label: "Women" },
-    { id: "kids", label: "Kids" },
-    // { id: "accessories", label: "Accessories" },
-    // { id: "footwear", label: "Footwear" },
+    { id: "electronics", label: "Electronics" },
+    { id: "clothes", label: "Clothes" },
+    { id: "furniture", label: "Furniture" },
   ],
   brand: [
-    { id: "nike", label: "Nike" },
+    { id: "samsung", label: "Samsung" },
+    { id: "lg", label: "LG" },
     { id: "adidas", label: "Adidas" },
-    { id: "puma", label: "Puma" },
     { id: "levi", label: "Levi" },
-    { id: "zara", label: "Zara" },
-    { id: "h&m", label: "H&M" },
+    { id: "ikea", label: "IKEA" },
+    { id: "wayfair", label: "Wayfair" },
   ],
 };
 

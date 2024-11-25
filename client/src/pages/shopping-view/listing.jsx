@@ -140,54 +140,6 @@ function ShoppingListing() {
     }
   }
 
-  // function handleAddToCart(getCurrentProductId) {
-  //   // console.log(getCurrentProductId);
-  //   dispatch(
-  //     addToCart({
-  //       userId: user?.id,
-  //       productId: getCurrentProductId,
-  //       quantity: 1,
-  //     })
-  //   ).then((data) => {
-  //     if (data?.payload?.success) dispatch(fetchCartItems(user?.id));
-  //     toast({ title: "Product is added to cart." });
-  //     // else {
-  //     //   toast({ title: "Failed to add product to cart.", variant: "destructive" });
-  //     // }
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   setSort("price-lowtohigh");
-  //   setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
-  // }, [[categorySearchParam]]);
-  // // }, [[]]);
-
-  // useEffect(() => {
-  //   if (filters && Object.keys(filters).length > 0) {
-  //     const createQueryString = createSearchParamsHelper(filters);
-  //     setSearchParams(new URLSearchParams(createQueryString));
-  //   }
-  // }, [filters]);
-
-  // // fetch list of products
-  // useEffect(() => {
-  //   if (filters !== null && sort !== null)
-  //     dispatch(
-  //       fetchAllFilteredProducts({ filterParams: filters, sortParams: sort })
-  //     );
-  // }, [dispatch, sort, filters]);
-  // // }, [sort, filters]);
-
-  // useEffect(() => {
-  //   if (productDetails !== null) setOpenDetailsDialog(true);
-  // }, [productDetails]);
-
-  // console.log(productList, "productList");
-  // //   console.log(filters, searchParams.toString(), "filters");
-  // console.log(productDetails, "productDetails");
-  // console.log(cartItems, "cartItems");
-
   useEffect(() => {
     // Retrieve saved filters from session storage or initialize with an empty object
     const savedFilters = JSON.parse(sessionStorage.getItem("filters")) || {};

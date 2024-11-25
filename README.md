@@ -45,4 +45,4 @@ BuyHere is an e-commerce platform built with JavaScript, React.js, Express.js, N
 ## Credits
 
 - **Icons and Components CSS Libraries**: [Lucide](https://lucide.dev/) and [ShadCN UI](https://ui.shadcn.com/)
-- **Free-to-use Images**: [Unsplash] (https://unsplash.com/)
+- **Free-to-use Images**: [Unsplash](https://unsplash.com/)

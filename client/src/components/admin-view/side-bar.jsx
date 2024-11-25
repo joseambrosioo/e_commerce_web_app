@@ -9,6 +9,7 @@ import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
 
+// Define the menu items to be displayed in the admin sidebar
 const adminSidebarMenuItems = [
   //   {
   //     id: "dashboard",
@@ -30,6 +31,11 @@ const adminSidebarMenuItems = [
   },
 ];
 
+/**
+ * Component to render the menu items in the admin sidebar.
+ * - Displays the sidebar menu and handles navigation.
+ * - Each menu item is clickable and redirects to the specified path.
+ */
 function MenuItems({ setOpen }) {
   const navigate = useNavigate();
 
@@ -52,6 +58,8 @@ function MenuItems({ setOpen }) {
   );
 }
 
+// Component to render the admin sidebar.
+// Displays a collapsible sidebar with navigation options for the admin interface.
 function AdminSideBar({ open, setOpen }) {
   const navigate = useNavigate();
 
@@ -92,4 +100,5 @@ function AdminSideBar({ open, setOpen }) {
   );
 }
 
+// Exports the component for use in admin-related views.
 export default AdminSideBar;

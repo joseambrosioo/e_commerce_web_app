@@ -17,6 +17,8 @@ const initialFormData = {
   status: "",
 };
 
+// React component for displaying and managing the details of an admin order.
+// It allows viewing order information and updating the order status.
 function AdminOrderDetailsView({ orderDetails }) {
   const [formData, setFormData] = useState(initialFormData);
   const { user } = useSelector((state) => state.auth);
@@ -25,12 +27,14 @@ function AdminOrderDetailsView({ orderDetails }) {
 
   console.log(orderDetails, "orderDetailsorderDetails");
 
+  // Handles the submission of the form to update the order status.
   function handleUpdateStatus(event) {
     event.preventDefault();
     console.log(formData, "formData");
 
     const { status } = formData;
 
+    // Dispatches an action to update the order status in the store and database
     dispatch(
       updateOrderStatus({ id: orderDetails?._id, orderStatus: status })
     ).then((data) => {
@@ -46,6 +50,7 @@ function AdminOrderDetailsView({ orderDetails }) {
   }
 
   return (
+    // DialogContent wraps the entire view for displaying order details in a modal-style layout.
     // <DialogContent className=" bg-white text-black sm:max-w-[600px]">
     <DialogContent className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full">
       <div className="grid gap-6">
@@ -145,4 +150,5 @@ function AdminOrderDetailsView({ orderDetails }) {
   );
 }
 
+// Exports the component for use in admin-related views.
 export default AdminOrderDetailsView;

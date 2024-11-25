@@ -32,20 +32,6 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
     setRating(getRating);
   }
 
-  // function handleAddToCart(getCurrentProductId) {
-  //   // console.log(getCurrentProductId);
-  //   dispatch(
-  //     addToCart({
-  //       userId: user?.id,
-  //       productId: getCurrentProductId,
-  //       quantity: 1,
-  //     })
-  //   ).then((data) => {
-  //     if (data?.payload?.success) dispatch(fetchCartItems(user?.id));
-  //     toast({ title: "Product is added to cart." });
-  //   });
-  // }
-
   function handleAddToCart(getCurrentProductId, getTotalStock) {
     console.log("Cart Items:", cartItems);
     let getCartItems = cartItems.items || [];

@@ -239,6 +239,7 @@ function ShoppingListing() {
               {productList?.length} Products
             </span>
             <DropdownMenu>
+              {/* <DropdownMenu className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full"> */}
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
@@ -249,7 +250,10 @@ function ShoppingListing() {
                   <span>Sort by</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[200px]">
+              <DropdownMenuContent
+                align="end"
+                className="w-[200px] bg-white text-black"
+              >
                 <DropdownMenuRadioGroup value={sort} onValueChange={handleSort}>
                   {sortOptions.map((sortItem) => (
                     <DropdownMenuRadioItem

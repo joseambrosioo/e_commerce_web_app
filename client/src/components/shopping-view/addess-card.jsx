@@ -30,8 +30,18 @@ function AddressCard({
         <Label>Notes: {addressInfo?.notes}</Label>
       </CardContent>
       <CardFooter className="p-3 flex justify-between">
-        <Button onClick={() => handleEditAddress(addressInfo)}>Edit</Button>
-        <Button onClick={() => handleDeleteAddress(addressInfo)}>Delete</Button>
+        <Button
+          className="bg-blue-950 text-white"
+          onClick={() => handleEditAddress(addressInfo)}
+        >
+          Edit
+        </Button>
+        <Button
+          className="bg-red-500 text-white"
+          onClick={() => handleDeleteAddress(addressInfo)}
+        >
+          Delete
+        </Button>
       </CardFooter>
     </Card>
   );

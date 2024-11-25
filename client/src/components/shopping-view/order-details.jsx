@@ -8,7 +8,8 @@ function ShoppingOrderDetailsView({ orderDetails }) {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <DialogContent className="sm:max-w-[600px]">
+    // <DialogContent className="sm:max-w-[600px]">
+    <DialogContent className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full">
       <div className="grid gap-6">
         <div className="grid gap-2">
           <div className="flex mt-6 items-center justify-between">
@@ -40,7 +41,7 @@ function ShoppingOrderDetailsView({ orderDetails }) {
                     ? "bg-green-500"
                     : orderDetails?.orderStatus === "rejected"
                     ? "bg-red-600"
-                    : "bg-black"
+                    : "bg-blue-950"
                 }`}
               >
                 {orderDetails?.orderStatus}

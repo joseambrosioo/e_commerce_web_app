@@ -95,6 +95,7 @@ function AdminOrdersView() {
                         }}
                       >
                         <Button
+                          className="bg-blue-950 text-white"
                           onClick={() =>
                             handleFetchOrderDetails(orderItem?._id)
                           }

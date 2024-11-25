@@ -13,9 +13,12 @@ import {
   WashingMachine,
   WatchIcon,
 } from "lucide-react";
-import bannerOne from "../../assets/banner-1.webp";
-import bannerTwo from "../../assets/banner-2.webp";
-import bannerThree from "../../assets/banner-3.webp";
+// import bannerOne from "../../assets/banner-1.webp";
+// import bannerTwo from "../../assets/banner-2.webp";
+// import bannerThree from "../../assets/banner-3.webp";
+import bannerOne from "../../assets/banner-1.jpg";
+import bannerTwo from "../../assets/banner-2.jpg";
+import bannerThree from "../../assets/banner-3.jpg";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
@@ -32,19 +35,28 @@ import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
-  { id: "women", label: "Women", icon: CloudLightning },
-  { id: "kids", label: "Kids", icon: BabyIcon },
-  { id: "accessories", label: "Accessories", icon: WatchIcon },
-  { id: "footwear", label: "Footwear", icon: UmbrellaIcon },
+  { id: "women", label: "Women", icon: ShirtIcon },
+  { id: "kids", label: "Kids", icon: ShirtIcon },
+  // { id: "men", label: "Men", icon: ShirtIcon },
+  // { id: "women", label: "Women", icon: CloudLightning },
+  // { id: "kids", label: "Kids", icon: BabyIcon },
+  // { id: "accessories", label: "Accessories", icon: WatchIcon },
+  // { id: "footwear", label: "Footwear", icon: UmbrellaIcon },
 ];
 
 const brandsWithIcon = [
   { id: "nike", label: "Nike", icon: Shirt },
-  { id: "adidas", label: "Adidas", icon: WashingMachine },
-  { id: "puma", label: "Puma", icon: ShoppingBasket },
-  { id: "levi", label: "Levi's", icon: Airplay },
-  { id: "zara", label: "Zara", icon: Images },
-  { id: "h&m", label: "H&M", icon: Heater },
+  { id: "adidas", label: "Adidas", icon: Shirt },
+  { id: "puma", label: "Puma", icon: Shirt },
+  { id: "levi", label: "Levi's", icon: Shirt },
+  { id: "zara", label: "Zara", icon: Shirt },
+  { id: "h&m", label: "H&M", icon: Shirt },
+  // { id: "nike", label: "Nike", icon: Shirt },
+  // { id: "adidas", label: "Adidas", icon: WashingMachine },
+  // { id: "puma", label: "Puma", icon: ShoppingBasket },
+  // { id: "levi", label: "Levi's", icon: Airplay },
+  // { id: "zara", label: "Zara", icon: Images },
+  // { id: "h&m", label: "H&M", icon: Heater },
 ];
 
 function ShoppingHome() {
@@ -121,7 +133,7 @@ function ShoppingHome() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="relative w-full h-[600px] overflow-hidden">
+      <div className="relative w-screen h-[600px] overflow-hidden">
         {slides.map((slide, index) => (
           <img
             src={slide}
@@ -131,7 +143,7 @@ function ShoppingHome() {
             } absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000`}
           />
         ))}
-        <Button
+        {/* <Button
           variant="outline"
           size="icon"
           className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80"
@@ -152,14 +164,14 @@ function ShoppingHome() {
           }
         >
           <ChevronRightIcon className="w-4 h-4" />
-        </Button>
+        </Button> */}
       </div>
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">
             Shop by Category
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {categoriesWithIcon.map((categoryItem) => (
               <Card
                 onClick={() =>
@@ -194,7 +206,7 @@ function ShoppingHome() {
           </div>
         </div>
       </section>
-      <section className="py-12">
+      {/* <section className="py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">
             Featured Products
@@ -216,7 +228,7 @@ function ShoppingHome() {
         open={openDetailsDialog}
         setOpen={setOpenDetailsDialog}
         productDetails={productDetails}
-      />
+      /> */}
     </div>
   );
 }

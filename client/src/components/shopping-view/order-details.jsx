@@ -37,7 +37,8 @@ function ShoppingOrderDetailsView({ orderDetails }) {
             <Label>
               <Badge
                 className={`py-1 px-3 text-white ${
-                  orderDetails?.orderStatus === "confirmed"
+                  orderItem?.orderStatus === "confirmed" ||
+                  orderItem?.orderStatus === "delivered"
                     ? "bg-green-500"
                     : orderDetails?.orderStatus === "rejected"
                     ? "bg-red-600"

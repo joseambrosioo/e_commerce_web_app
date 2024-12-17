@@ -1,5 +1,3 @@
-# csci897_project_fhsu_f2024
-
 # BuyHere - E-Commerce Platform
 
 ## Project Overview

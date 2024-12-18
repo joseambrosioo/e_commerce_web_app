@@ -1,3 +1,4 @@
+require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -17,10 +18,10 @@ const shopSearchRouter = require("./routes/shop/search-routes");
 const shopReviewRouter = require("./routes/shop/review-routes");
 
 mongoose
-  // .connect(process.env.MONGO_DB_URI)
-  .connect(
-    "mongodb+srv://jose-ambrosio:KUdtFQDBm37sDUwN@jose-ambrosio.ke25r.mongodb.net/"
-  )
+  .connect(process.env.MONGO_DB_URI)
+  // .connect(
+  //   "mongodb+srv://jose-ambrosio:KUdtFQDBm37sDUwN@jose-ambrosio.ke25r.mongodb.net/"
+  // )
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log);
 

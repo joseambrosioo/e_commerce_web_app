@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "e_commerce": "file:..",
-    "server": "file:.."
-  }
-}

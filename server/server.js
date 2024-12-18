@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -24,6 +25,8 @@ mongoose
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// const __dirname = path.resolve();
 
 app.use(
   cors({
@@ -57,5 +60,11 @@ app.use("/api/shop/address", shopAddressRouter);
 app.use("/api/shop/order", shopOrderRouter);
 app.use("/api/shop/search", shopSearchRouter);
 app.use("/api/shop/review", shopReviewRouter);
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));

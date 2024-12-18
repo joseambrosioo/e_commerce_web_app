@@ -17,9 +17,7 @@ const shopSearchRouter = require("./routes/shop/search-routes");
 const shopReviewRouter = require("./routes/shop/review-routes");
 
 mongoose
-  .connect(
-    "mongodb+srv://jose-ambrosio:KUdtFQDBm37sDUwN@jose-ambrosio.ke25r.mongodb.net/"
-  )
+  .connect(process.env.MONGO_DB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log);
 

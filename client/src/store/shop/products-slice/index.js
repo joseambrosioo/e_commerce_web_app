@@ -23,8 +23,8 @@ export const fetchAllFilteredProducts = createAsyncThunk(
     });
 
     const result = await axios.get(
-      // 'http://localhost:5000/api/shop/products/get',
-      `http://localhost:5000/api/shop/products/get?${query}`
+      // 'https://e-commerce-web-app-q0k6.onrender.com/api/shop/products/get',
+      `https://e-commerce-web-app-q0k6.onrender.com/api/shop/products/get?${query}`
     );
 
     // console.log(result.data);
@@ -37,8 +37,8 @@ export const fetchProductDetails = createAsyncThunk(
   "/products/fetchProductDetails",
   async (id) => {
     const result = await axios.get(
-      // 'http://localhost:5000/api/shop/products/get',
-      `http://localhost:5000/api/shop/products/get/${id}`
+      // 'https://e-commerce-web-app-q0k6.onrender.com/api/shop/products/get',
+      `https://e-commerce-web-app-q0k6.onrender.com/api/shop/products/get/${id}`
     );
 
     // console.log(result.data);

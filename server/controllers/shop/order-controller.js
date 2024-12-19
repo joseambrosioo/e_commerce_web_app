@@ -26,10 +26,8 @@ const createOrder = async (req, res) => {
       redirect_urls: {
         // return_url: "http://localhost:5173/shop/paypal-return",
         // cancel_url: "http://localhost:5173/shop/paypal-cancel",
-        return_url:
-          "https://e-commerce-web-app-q0k6.onrender.com/shop/paypal-return",
-        cancel_url:
-          "https://e-commerce-web-app-q0k6.onrender.com/paypal-cancel",
+        return_url: "http://localhost:5000/shop/paypal-return",
+        cancel_url: "http://localhost:5000/paypal-cancel",
       },
       transactions: [
         {

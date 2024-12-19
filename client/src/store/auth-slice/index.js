@@ -25,8 +25,8 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk("/auth/login", async (formData) => {
   const response = await axios.post(
-    // "https://e-commerce-web-app-q0k6.onrender.com/api/auth/login",
-    "https://e-commerce-web-app-q0k6.onrender.com/auth/login",
+    "https://e-commerce-web-app-q0k6.onrender.com/api/auth/login",
+    // "https://e-commerce-web-app-q0k6.onrender.com/auth/login",
     formData,
     {
       withCredentials: true,

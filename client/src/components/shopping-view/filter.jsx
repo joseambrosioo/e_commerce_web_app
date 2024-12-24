@@ -20,7 +20,7 @@ function ProductFilter({ filters, handleFilter }) {
                                     {
                                         filterOptions[keyItem].map(option => (
                                             <Label key={option.label} className="flex font-medium items-center gap-2">
-                                                <Checkbox
+                                                <Checkbox className="checkbox"
                                                     checked={
                                                         filters && Object.keys(filters).length > 0 &&
                                                         filters[keyItem] && filters[keyItem].indexOf(option.id) > -1

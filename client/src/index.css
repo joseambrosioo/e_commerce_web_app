@@ -99,13 +99,13 @@ button:focus-visible {
 }
 
 .checkbox {
-  appearance: none;
+  /* appearance: none;
   width: 1rem;
   height: 1rem;
-  border: 1px solid #ccc; /* Default border color */
-  border-radius: 0.25rem; /* Rounded corners */
+  border: 1px solid #ccc; 
+  border-radius: 0.25rem; 
   background-color: white;
-  display: flex;
+  display: flex; */
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease-in-out;

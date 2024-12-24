@@ -50,9 +50,9 @@ function AuthRegister() {
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
           BuyHere
         </h1>
-        <h2 className="text-3xl font-bold tracking-tight text-foreground">
+        <h3 className="text-3xl font-bold tracking-tight text-foreground">
           Create new account
-        </h2>
+        </h3>
         <p className="mt-2">
           Already have an account?
           <Link

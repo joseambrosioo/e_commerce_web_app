@@ -119,5 +119,5 @@ button:focus-visible {
 .checkbox:checked::before {
   content: "✔"; /* Checkmark icon */
   font-size: 0.75rem;
-  color: white; /* Icon color */
+  color: black; /* Icon color */
 }

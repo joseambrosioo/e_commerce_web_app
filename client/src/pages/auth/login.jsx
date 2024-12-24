@@ -40,11 +40,11 @@ function AuthLogin() {
     <div className="max-auto w-full max-w-md space-y-6">
       <div className="text-cent">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
-          BUYHERE
+          BuyHere
         </h1>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+        <h2 className="text-3xl font-bold tracking-tight text-foreground">
           Sign in to your account
-        </h1>
+        </h2>
         <p className="mt-2">
           Do not have an account?
           <Link

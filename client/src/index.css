@@ -97,3 +97,27 @@ button:focus-visible {
     --radius: 0.5rem;
   }
 }
+
+.checkbox {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #ccc; /* Default border color */
+  border-radius: 0.25rem; /* Rounded corners */
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox:checked {
+  border-color: #4f46e5; /* Primary color */
+  background-color: #4f46e5;
+}
+
+.checkbox:checked::before {
+  content: "✔"; /* Checkmark icon */
+  font-size: 0.75rem;
+  color: white; /* Icon color */
+}

@@ -47,6 +47,11 @@ input {
   border: 1px solid #ccc; /* 1px solid border, light grey */
 }
 
+textarea {
+  background-color: #ffffff; /* White background */
+  border: 1px solid #ccc; /* 1px solid border, light grey */
+}
+
 button {
   border-radius: 8px;
   /* border: 1px solid transparent; */

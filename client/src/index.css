@@ -99,16 +99,14 @@ button:focus-visible {
 }
 
 .checkbox {
-  /* appearance: none;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid #ccc; 
-  border-radius: 0.25rem; 
-  background-color: white;
-  display: flex; */
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease-in-out;
+  position: relative; /* Ensures the checkmark is positioned relative to the checkbox */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  background-color: white; /* Background color */
+  display: inline-block;
+  cursor: pointer;
 }
 
 .checkbox:checked {
@@ -116,8 +114,12 @@ button:focus-visible {
   background-color: #4f46e5;
 }
 
-.checkbox:checked::before {
-  content: "✔"; /* Checkmark icon */
+.checkbox:checked::after {
+  content: "✔"; /* Unicode checkmark */
+  position: absolute; /* Absolute positioning inside the checkbox */
+  top: 50%; /* Vertically center */
+  left: 50%; /* Horizontally center */
+  transform: translate(-50%, -50%); /* Fine-tuning for centering */
   font-size: 0.75rem;
   color: black; /* Icon color */
 }

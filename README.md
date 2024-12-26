@@ -16,7 +16,7 @@ BuyHere is an e-commerce platform built with JavaScript, React.js, Express.js, N
 ## Tech Stack (JavaScript)
 
 - **Backend:** JavaScript, Express.js, Node.js, JSON Web Token (JWT), RESTful APIs
-- **Frontend:** JavaScript, React.js, Redux, Lucide, ShadCN UI
+- **Frontend:** JavaScript, React.js, Redux, Tailwind CSS, Lucide, ShadCN UI
 - **Database (Cloud):** MongoDB Atlas (NoSQL)
 - **Payment:** PayPal REST API
 - **Images Storage Cloud Hosting Provider:** Cloudinary

@@ -138,6 +138,17 @@ function ShoppingCheckout() {
             </div>
           </div>
           <div className="mt-4 w-full">
+            <p className="text-sm text-gray-600 mb-2">
+              This application is for demonstration purposes only. Please use
+              the following sandbox account credentials to test payments. Real
+              PayPal accounts cannot be used here.
+            </p>
+            <p className="text-sm text-gray-600 mb-2">
+              PayPal Test Account Email: sb-awaby32981834@personal.example.com
+            </p>
+            <p className="text-sm text-gray-600 mb-2">
+              PayPal Test Account Password: 48FY/q.q
+            </p>
             <Button onClick={handleInitiatePaypalPayment} className="w-full">
               {isPaymentStart
                 ? "Processing Paypal Payment..."

@@ -193,7 +193,7 @@ export const addressFormControls = [
     name: "zipCode",
     componentType: "input",
     type: "text",
-    placeholder: "Enter your zipCode",
+    placeholder: "Enter your ZIP Code",
   },
   {
     label: "Phone",

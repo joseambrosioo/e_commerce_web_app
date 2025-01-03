@@ -4,6 +4,10 @@
 
 BuyHere is an e-commerce platform built with JavaScript, React.js, Express.js, Node.js, and MongoDB. The platform allows customers/users to browse, purchase products, and manage their orders, while admins can manage inventory and process orders.
 
+## User Access
+
+- **Home Page:** https://e-commerce-web-app-q0k6.onrender.com
+
 ## Features
 
 - **Product Browsing**: Search, filter, and view product details.

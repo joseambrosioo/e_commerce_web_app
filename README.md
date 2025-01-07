@@ -1,4 +1,4 @@
-# BuyHere - E-Commerce Platform
+# BuyHere • E-Commerce Platform
 
 ## Project Overview
 

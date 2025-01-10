@@ -63,6 +63,7 @@ export const addProductFormElements = [
       { id: "electronics", label: "Electronics" },
       { id: "clothes", label: "Clothes" },
       { id: "furniture", label: "Furniture" },
+      { id: "orders", label: "Orders" },
     ],
   },
   {
@@ -113,21 +114,26 @@ export const shoppingViewHeaderMenuItems = [
     label: "Products",
     path: "/shop/listing",
   },
-  // {
-  //   id: "electronics",
-  //   label: "Electronics",
-  //   path: "/shop/listing",
-  // },
-  // {
-  //   id: "clothes",
-  //   label: "Clothes",
-  //   path: "/shop/listing",
-  // },
-  // {
-  //   id: "furniture",
-  //   label: "Furniture",
-  //   path: "/shop/listing",
-  // },
+  {
+    id: "electronics",
+    label: "Electronics",
+    path: "/shop/listing",
+  },
+  {
+    id: "clothes",
+    label: "Clothes",
+    path: "/shop/listing",
+  },
+  {
+    id: "furniture",
+    label: "Furniture",
+    path: "/shop/listing",
+  },
+  {
+    id: "orders",
+    label: "Orders",
+    path: "/shop/account",
+  },
   {
     id: "search",
     label: "Search",

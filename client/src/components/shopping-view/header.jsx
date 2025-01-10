@@ -114,9 +114,15 @@ function HeaderRightContent() {
       </Sheet>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="bg-black">
+          {/* <Avatar className="bg-black">
             <AvatarFallback className="bg-black text-white font-extrabold">
               {user?.userName[0].toUpperCase()}
+            </AvatarFallback>
+          </Avatar> */}
+          <Avatar>
+            <AvatarFallback>
+              {/* {user?.userName[0].toUpperCase()} */}
+              Settings
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
@@ -140,6 +146,30 @@ function HeaderRightContent() {
 
 function ShoppingHeader() {
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const [openMenu, setOpenMenu] = useState(false); // Add state for menu visibility
+
+  // Function to handle navigation and close the menu
+  function handleNavigate(getCurrentMenuItem) {
+    sessionStorage.removeItem("filters");
+    const currentFilter =
+      getCurrentMenuItem.id !== "home" &&
+      getCurrentMenuItem.id !== "products" &&
+      getCurrentMenuItem.id !== "search"
+        ? {
+            category: [getCurrentMenuItem.id],
+          }
+        : null;
+
+    sessionStorage.setItem("filters", JSON.stringify(currentFilter));
+
+    location.pathname.includes("listing") && currentFilter !== null
+      ? setSearchParams(
+          new URLSearchParams(`?category=${getCurrentMenuItem.id}`)
+        )
+      : navigate(getCurrentMenuItem.path);
+
+    setOpenMenu(false); // Close the menu after navigating
+  }
 
   // console.log(user, 'useruseruser');
 
@@ -152,7 +182,12 @@ function ShoppingHeader() {
         </Link>
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="lg:hidden">
+            <Button
+              variant="outline"
+              size="icon"
+              className="lg:hidden"
+              onClick={() => setOpenMenu(!openMenu)}
+            >
               <Menu className="h-6 w-6" />
               <span className="sr-only">Toggle header menu</span>
             </Button>
@@ -161,6 +196,10 @@ function ShoppingHeader() {
           <SheetContent
             side="left"
             className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full"
+            // className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full lg:hidden sm:block"
+            onClick={() => setOpen(true)}
+            open={openMenu} // Bind open state to the Sheet
+            onOpenChange={() => setOpenMenu(!openMenu)} // Toggle menu visibility
           >
             <MenuItems />
             <HeaderRightContent />

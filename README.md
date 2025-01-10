@@ -1,8 +1,8 @@
-# BuyHere - E-Commerce Platform
+# BuyHere • E-Commerce Platform
 
 ## Project Overview
 
-BuyHere is an e-commerce platform built with JavaScript, React.js, Express.js, Node.js, and MongoDB. The platform allows customers/users to browse, purchase products, and manage their orders, while admins can manage inventory and process orders.
+BuyHere is a full-stack MERN e-commerce web app that allows users to authenticate, browse products, make purchases, view order history, track shipments, and review products, while allowing admins to manage inventory and orders processing.
 
 ## User Access
 

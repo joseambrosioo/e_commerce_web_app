@@ -120,7 +120,7 @@ function HeaderRightContent() {
             </AvatarFallback>
           </Avatar> */}
           <Avatar>
-            <AvatarFallback>
+            <AvatarFallback className="text-sm">
               {/* {user?.userName[0].toUpperCase()} */}
               Settings
             </AvatarFallback>

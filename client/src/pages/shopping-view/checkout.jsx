@@ -149,6 +149,9 @@ function ShoppingCheckout() {
             <p className="text-sm text-red-800 mb-2">
               PayPal Test Account Password: 48FY/q.q
             </p>
+            <p className="text-sm text-red-800 mb-2">
+              Pay with: PayPal balance
+            </p>
             <Button onClick={handleInitiatePaypalPayment} className="w-full">
               {isPaymentStart
                 ? "Processing PayPal Payment..."

@@ -7,7 +7,7 @@ import { CardHeader, CardTitle } from "@/components/ui/card";
 function ShoppingAccount() {
   return (
     <div className="flex flex-col h-full md:w-full sm:w-full">
-      <div className="relative h-[50px] overflow-hidden lg:w-screen">
+      <div className="relative overflow-hidden lg:w-screen">
         {/* <img
           src={accImg}
           className="h-full w-full object-cover object-center"

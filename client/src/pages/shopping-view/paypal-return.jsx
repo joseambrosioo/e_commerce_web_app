@@ -25,9 +25,13 @@ function PaypalReturnPage() {
   }, [paymentId, payerId, dispatch]);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Processing Payment...Please wait!</CardTitle>
+    // <Card>
+    <Card className="p-10 h-screen md:w-full sm:w-full mt-6">
+      <CardHeader className="p-0 lg:w-screen">
+        {/* <CardTitle className="text-xl">Payment is successful!</CardTitle> */}
+      </CardHeader>
+      <CardHeader className="p-0">
+        <CardTitle className="text-xl">Processing Payment... Please wait!</CardTitle>
       </CardHeader>
     </Card>
   );

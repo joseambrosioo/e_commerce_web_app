@@ -2,6 +2,7 @@ import {
   HousePlug,
   LogOut,
   Menu,
+  ShoppingBag,
   ShoppingBasket,
   ShoppingCart,
   UserRound,
@@ -41,6 +42,7 @@ function MenuItems() {
     const currentFilter =
       getCurrentMenuItem.id !== "home" &&
       getCurrentMenuItem.id !== "products" &&
+      getCurrentMenuItem.id !== "orders" &&
       getCurrentMenuItem.id !== "search"
         ? {
             category: [getCurrentMenuItem.id],
@@ -89,7 +91,8 @@ function HeaderRightContent() {
   }, [dispatch]);
 
   return (
-    <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+    // <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+    <div className="flex items-center justify-between gap-4">
       {/* <Sheet
         open={openCartSheet}
         onOpenChange={(open) => setOpenCartSheet(open)}
@@ -98,9 +101,11 @@ function HeaderRightContent() {
         <Button
           onClick={() => setOpenCartSheet(true)}
           variant="outline"
-          size="icon"
+          // size="icon"
+          size="sm"
         >
-          <ShoppingCart className="w-6 h-6" />
+          {/* <ShoppingCart className="w-6 h-6" /> */}
+          <ShoppingCart className="w-4 h-6" />
           <span className="sr-only">User cart</span>
         </Button>
         <UserCartWrapper
@@ -120,7 +125,7 @@ function HeaderRightContent() {
             </AvatarFallback>
           </Avatar> */}
           <Avatar>
-            <AvatarFallback className="text-sm">
+            <AvatarFallback className="text-sm font-semibold">
               {/* {user?.userName[0].toUpperCase()} */}
               Settings
             </AvatarFallback>
@@ -154,6 +159,7 @@ function ShoppingHeader() {
     const currentFilter =
       getCurrentMenuItem.id !== "home" &&
       getCurrentMenuItem.id !== "products" &&
+      getCurrentMenuItem.id !== "orders" &&
       getCurrentMenuItem.id !== "search"
         ? {
             category: [getCurrentMenuItem.id],
@@ -175,20 +181,24 @@ function ShoppingHeader() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="flex h-16 item-center justify-between px-4 md:px-6">
+      {/* <div className="flex h-16 item-center justify-between px-4 md:px-6"> */}
+      <div className="flex items-center justify-between gap-4 h-16">
         <Link to="/shop/home" className="flex items-center gap-2">
-          <ShoppingCart className="h-6 w-6 text-black" />
+          <ShoppingBag className="h-6 w-6 text-black" />
           <span className="text-black">BuyHere</span>
         </Link>
-        <Sheet>
+        
+        <Sheet side="right">
           <SheetTrigger asChild>
             <Button
               variant="outline"
-              size="icon"
+              // size="icon"
+              size="sm"
               className="lg:hidden"
-              onClick={() => setOpenMenu(!openMenu)}
+              onClick={() => setOpenMenu(true)}
             >
-              <Menu className="h-6 w-6" />
+              <Menu className="h-4 w-6" />
+              {/* <Menu className="h-6 w-6" /> */}
               <span className="sr-only">Toggle header menu</span>
             </Button>
           </SheetTrigger>
@@ -197,12 +207,11 @@ function ShoppingHeader() {
             side="left"
             className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full"
             // className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full lg:hidden sm:block"
-            onClick={() => setOpen(true)}
             open={openMenu} // Bind open state to the Sheet
             onOpenChange={() => setOpenMenu(!openMenu)} // Toggle menu visibility
           >
             <MenuItems />
-            <HeaderRightContent />
+            {/* <HeaderRightContent /> */}
           </SheetContent>
         </Sheet>
         <div className="hidden lg:block">
@@ -210,11 +219,12 @@ function ShoppingHeader() {
         </div>
         {/* {
                 isAuthenticated ? ( */}
-        <div className="hidden lg:block">
+        {/* <div className="hidden lg:block">
           <HeaderRightContent />
-        </div>
+        </div> */}
         {/* ) : null
          } */}
+        <HeaderRightContent /> 
       </div>
     </header>
   );

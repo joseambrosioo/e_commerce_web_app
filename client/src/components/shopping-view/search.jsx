@@ -25,7 +25,7 @@ function SearchProducts() {
   const { cartItems } = useSelector((state) => state.shopCart);
   const { toast } = useToast();
   useEffect(() => {
-    if (keyword && keyword.trim() !== "" && keyword.trim().length > 2) {
+    if (keyword && keyword.trim() !== "" && keyword.trim().length > 0) {
       setTimeout(() => {
         setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
         dispatch(getSearchResults(keyword));
@@ -62,7 +62,7 @@ function SearchProducts() {
 
         if (getQuantity + 1 > getTotalStock) {
           toast({
-            title: `Only ${getTotalStock} items can be added for this product.`,
+            title: `Only ${getTotalStock} items of this product can be added to cart.`,
             variant: "destructive",
           });
           shouldAddToCart = false;
@@ -83,7 +83,7 @@ function SearchProducts() {
       ).then((data) => {
         if (data?.payload?.success) {
           dispatch(fetchCartItems(user?.id));
-          toast({ title: "Product is added to cart." });
+          toast({ title: "Product added to your cart." });
         }
       });
     }
@@ -138,21 +138,24 @@ function SearchProducts() {
   console.log(searchResults, "searchResults");
 
   return (
-    <div className="container mx-auto md:px-6 px-4 py-8">
+    // <div className="container mx-auto md:px-6 px-4 py-8">
+    <div className="container mx-auto md:w-full sm:w-full h-screen">
       <div className="flex justify-center mb-8">
         <div className="w-full flex items-center">
           <Input
             value={keyword}
             name="keyword"
             onChange={(event) => setKeyword(event.target.value)}
-            className="py-6"
-            placeholder="Search Products..."
+            className="py-6 lg:w-screen mt-6"
+            placeholder="Search Products... (Example: Name, Brand, or Category) "
           />
         </div>
       </div>
-      {!searchResults.length ? (
-        <h1 className="text-5xl font-extrabold">No result found!</h1>
-      ) : null}
+      <div className=""> 
+        {!searchResults.length ? (
+          <h1 className="text-xl font-extrabold">No result found!</h1>
+        ) : null}
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {searchResults.map((item) => (
           <ShoppingProductTile

@@ -26,6 +26,7 @@ function AuthRegister() {
       if (data?.payload?.success) {
         toast({
           title: data?.payload?.message,
+          className: "toast-success"
         });
         navigate("/auth/login");
       } else {
@@ -45,14 +46,15 @@ function AuthRegister() {
   console.log(formData);
 
   return (
+    // <div className="max-auto w-full max-w-md space-y-6 lg:w-screen md:w-full sm:w-full ">
     <div className="max-auto w-full max-w-md space-y-6">
-      <div className="text-cent">
+      <div className="text-center">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
           BuyHere
         </h1>
-        <h3 className="text-3xl font-bold tracking-tight text-foreground">
+        <h1 className="text-2xl font-bold tracking-tight text-foreground mt-4">
           Create new account
-        </h3>
+        </h1>
         <p className="mt-2">
           Already have an account?
           <Link

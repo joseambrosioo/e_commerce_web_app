@@ -95,7 +95,8 @@ function ShoppingHome() {
       if (data?.payload?.success) {
         dispatch(fetchCartItems(user?.id));
         toast({
-          title: "Product is added to cart",
+          title: "Product added to your cart.",
+          className: "toast-success"
         });
       }
     });
@@ -126,7 +127,8 @@ function ShoppingHome() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="relative w-screen h-[600px] overflow-hidden">
+      {/* <div className="relative w-screen h-[600px] overflow-hidden"> */}
+      <div className="relative lg:w-screen md:w-full sm:w-full h-[600px] overflow-hidden">
         {slides.map((slide, index) => (
           <img
             src={slide}

@@ -123,7 +123,7 @@ function UserCartItemsContent({ cartItem }) {
 
       if (getQuantity + 1 > getTotalStock) {
         toast({
-          title: `Only ${getTotalStock} items can be added for this product.`,
+          title: `Only ${getTotalStock} items of this product can be added to cart.`,
           variant: "destructive",
         });
         return;
@@ -133,7 +133,7 @@ function UserCartItemsContent({ cartItem }) {
     // Handle the 'minus' action and check minimum quantity
     if (typeOfAction === "minus" && getQuantity <= 1) {
       toast({
-        title: "Quantity cannot be less than 1.",
+        title: "Cart item quantity in the cart cannot be less than 1.",
         variant: "destructive",
       });
       return;
@@ -148,7 +148,9 @@ function UserCartItemsContent({ cartItem }) {
       })
     ).then((data) => {
       if (data?.payload?.success) {
-        toast({ title: "Cart item is updated successfully." });
+        toast({ title: "Cart item quantity updated successfully.", 
+          className: "toast-info"
+        });
       }
     });
   }
@@ -159,7 +161,8 @@ function UserCartItemsContent({ cartItem }) {
     ).then((data) => {
       if (data?.payload?.success) {
         toast({
-          title: "Cart item is deleted successfully",
+          title: "The item has been removed from your cart.", 
+          variant: "destructive",
         });
       }
     });
@@ -178,7 +181,7 @@ function UserCartItemsContent({ cartItem }) {
           <Button
             variant="outline"
             className="h-8 w-8 rounded-full"
-            size="icon"
+            size="sm"
             disabled={cartItem?.quantity === 1}
             onClick={() => handleUpdateCartItemQuantity(cartItem, "minus")}
           >
@@ -189,7 +192,7 @@ function UserCartItemsContent({ cartItem }) {
           <Button
             variant="outline"
             className="h-8 w-8 rounded-full"
-            size="icon"
+            size="sm"
             onClick={() => handleUpdateCartItemQuantity(cartItem, "plus")}
           >
             <Plus className="w-4 h-4" />

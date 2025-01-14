@@ -58,7 +58,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
 
         if (getQuantity + 1 > getTotalStock) {
           toast({
-            title: `Only ${getTotalStock} items can be added for this product.`,
+            title: `Only ${getTotalStock} items of this product can be added to cart.`,
             variant: "destructive",
           });
           shouldAddToCart = false;
@@ -79,7 +79,9 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
       ).then((data) => {
         if (data?.payload?.success) {
           dispatch(fetchCartItems(user?.id));
-          toast({ title: "Product is added to cart." });
+          toast({ title: "Product added to your cart." , 
+          className: "toast-info"
+        });
         }
       });
     }
@@ -108,6 +110,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
         dispatch(getReviews(productDetails?._id));
         toast({
           title: "Review added successfully!",
+          className: "toast-success"
         });
       }
     });

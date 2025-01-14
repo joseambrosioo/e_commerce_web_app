@@ -27,7 +27,8 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
       className="overflow-auto bg-white text-black p-5 shadow-lg max-h-full"
     >
       <SheetHeader>
-        <SheetTitle>Your Cart</SheetTitle>
+        {/* <SheetTitle>Your Cart</SheetTitle> */}
+        <SheetTitle>My Cart</SheetTitle>
       </SheetHeader>
       <div className="mt-8 space-y-4">
         {cartItems && cartItems.length > 0

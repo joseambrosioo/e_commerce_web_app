@@ -20,7 +20,7 @@ const initialAddressFormData = {
   notes: "",
 };
 
-// function Address({ setCurrentSelectedAddress }) {
+// function Address({ setCurrentSelectedAddress, }) {
 function Address({ setCurrentSelectedAddress, selectedId }) {
   const [formData, setFormData] = useState(initialAddressFormData);
   const [currentEditedId, setCurrentEditedId] = useState(null);
@@ -49,7 +49,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     if (addressList.length >= 3 && currentEditedId === null) {
       setFormData(initialAddressFormData);
       toast({
-        title: "You can add max 3 addresses",
+        title: "You can only add a maximum of 3 addresses!",
         variant: "destructive",
       });
 
@@ -69,7 +69,8 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
             setCurrentEditedId(null);
             setFormData(initialAddressFormData);
             toast({
-              title: "Address updated successfully",
+              title: "Address updated successfully!",
+              className: "toast-success"
             });
           }
         })
@@ -83,7 +84,8 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
             dispatch(fetchAllAddresses(user?.id));
             setFormData(initialAddressFormData);
             toast({
-              title: "Address added successfully",
+              title: "Address added successfully!",
+              className: "toast-success"
             });
           }
         });
@@ -96,7 +98,8 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
       if (data?.payload?.success) {
         dispatch(fetchAllAddresses(user?.id));
         toast({
-          title: "Address deleted successfully",
+          title: "Address deleted successfully!",
+          variant: "destructive"
         });
       }
     });
@@ -133,7 +136,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
         {addressList && addressList.length > 0
           ? addressList.map((singleAddressItem) => (
               <AddressCard
-              selectedId={selectedId}
+                selectedId={selectedId}
                 handleDeleteAddress={handleDeleteAddress}
                 addressInfo={singleAddressItem}
                 handleEditAddress={handleEditAddress}

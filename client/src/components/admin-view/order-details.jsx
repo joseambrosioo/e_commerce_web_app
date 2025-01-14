@@ -44,6 +44,7 @@ function AdminOrderDetailsView({ orderDetails }) {
         setFormData(initialFormData);
         toast({
           title: data?.payload?.message,
+          className: "toast-info"
         });
       }
     });

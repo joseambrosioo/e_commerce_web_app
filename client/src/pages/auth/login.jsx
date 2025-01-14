@@ -26,6 +26,7 @@ function AuthLogin() {
       if (data?.payload?.success) {
         toast({
           title: data?.payload?.message,
+          className: "toast-success"
         });
       } else {
         toast({
@@ -42,9 +43,9 @@ function AuthLogin() {
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
           BuyHere
         </h1>
-        <h3 className="text-3xl font-bold tracking-tight text-foreground">
+        <h1 className="text-2xl font-bold tracking-tight text-foreground mt-4">
           Sign in to your account
-        </h3>
+        </h1>
         <p className="mt-2">
           Do not have an account?
           <Link
@@ -53,6 +54,15 @@ function AuthLogin() {
           >
             Register
           </Link>
+        </p>
+        <p className="mt-4">
+          Use the following credentials to log in as a test user:
+        </p>
+        <p className="mt-2">
+          Email: jose@gmail.com
+        </p>
+        <p className="mt-2">
+          Password: jose
         </p>
       </div>
       <CommonForm

@@ -38,7 +38,7 @@ function ShoppingCheckout() {
   function handleInitiatePaypalPayment() {
     if (cartItems.length === 0) {
       toast({
-        title: "Your cart is empty. Please add items to proceed",
+        title: "Your cart is empty! Please add items to proceed.",
         variant: "destructive",
       });
 
@@ -46,7 +46,7 @@ function ShoppingCheckout() {
     }
     if (currentSelectedAddress === null) {
       toast({
-        title: "Please select one address to proceed.",
+        title: "Please, select one address to proceed.",
         variant: "destructive",
       });
 

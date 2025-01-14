@@ -134,7 +134,9 @@ function ShoppingListing() {
       ).then((data) => {
         if (data?.payload?.success) {
           dispatch(fetchCartItems(user?.id));
-          toast({ title: "Product is added to cart." });
+          toast({ title: "Product added to your cart.",
+            className: "toast-info"
+           });
         }
       });
     }

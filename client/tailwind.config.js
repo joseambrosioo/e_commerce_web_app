@@ -76,31 +76,58 @@
 // }
 
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ['class'],
-  content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
-  ],
+// /** @type {import('tailwindcss').Config} */
+// module.exports = {
+//   darkMode: ['class'],
+//   content: [
+//     './index.html',
+//     './src/**/*.{js,ts,jsx,tsx}',
+//   ],
+//   theme: {
+//     extend: {
+//       borderRadius: {
+//         lg: 'var(--radius)',
+//         md: 'calc(var(--radius) - 2px)',
+//         sm: 'calc(var(--radius) - 4px)'
+//       },
+//       colors: {
+//         // Error or Critical Notifications
+//         destructive: {
+//           DEFAULT: "#dc2626", // Red for destructive actions
+//           foreground: "#ffffff", // White text
+//         },
+//         muted: '#d3d3d3', // Define muted color or adjust accordingly
+//         foreground: '#333333', // Define foreground color
+//         backgroundColor: '#ffffff'
+//       }
+//     }
+//   },
+//   plugins: [require("tailwindcss-animate")],
+// }
+
+// tailwind.config.js
+import tailwindcssAnimate from "tailwindcss-animate";
+import forms from "@tailwindcss/forms";
+
+export default {
+  darkMode: ["class"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       colors: {
-        // Error or Critical Notifications
         destructive: {
-          DEFAULT: "#dc2626", // Red for destructive actions
-          foreground: "#ffffff", // White text
+          DEFAULT: "#dc2626",
+          foreground: "#ffffff",
         },
-        muted: '#d3d3d3', // Define muted color or adjust accordingly
-        foreground: '#333333', // Define foreground color
-        backgroundColor: '#ffffff'
-      }
-    }
+        muted: "#d3d3d3",
+        foreground: "#333333",
+      },
+    },
   },
-  plugins: [require("tailwindcss-animate")],
-}
+  plugins: [tailwindcssAnimate, forms],
+};

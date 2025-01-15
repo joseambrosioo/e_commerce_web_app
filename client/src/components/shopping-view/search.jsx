@@ -151,7 +151,7 @@ function SearchProducts() {
           />
         </div>
       </div>
-      <div className=""> 
+      <div className="mx-39"> 
         {!searchResults.length ? (
           <h1 className="text-xl font-extrabold">No result found!</h1>
         ) : null}
